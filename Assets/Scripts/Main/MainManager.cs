@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EMainState
+{
+    MAIN,
+    SHOP,
+    RANKING,
+    SETTINGS,
+    STAGE
+}
+
 public class MainManager : MonoBehaviour
 {
-    protected GameState gameState;
+    private EMainState mainState = EMainState.MAIN;
 
     private void Awake()
     {
@@ -20,30 +29,22 @@ public class MainManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetMainState(EMainState state)
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        switch (state)
         {
-            SetState(new GameState_Tutorial());
+            case EMainState.MAIN:
+                break;
+            case EMainState.SHOP:
+                break;
+            case EMainState.RANKING:
+                break;
+            case EMainState.SETTINGS:
+                break;
+            case EMainState.STAGE:
+                break;
+            default:
+                break;
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetState(new GameState_Ready());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SetState(new GameState_Play());
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SetState(new GameState_GameOver());
-        }
-
-    }
-
-    protected void SetState(GameState state)
-    {
-        gameState = state;
     }
 }
