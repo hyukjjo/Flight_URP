@@ -2,13 +2,13 @@ using UnityEngine;
 
 public enum FigureColor
 {
-	GRAY = 0,
-	RED,
+	RED = 0,
     GREEN,
     BLUE,
     YELLOW,
+	GRAY,
 
-    MAX
+	MAX
 }
 
 public enum FigureShape
@@ -19,7 +19,7 @@ public enum FigureShape
     PENTAGON,
     HEXAGON,
 
-    MAX,
+    MAX
 }
 
 [System.Serializable]
