@@ -11,9 +11,6 @@ public class BGManager : MonoBehaviour
     FigureColor currentColor = FigureColor.GRAY;
 
     [Header("BackGroung Objects Setting")]
-    public Transform bgObjectParent;
-    List<BGFigure> bGFigures = new List<BGFigure>();
-
     public ParticleSystem ps;
     private ParticleSystemRenderer psRenderer;
 
