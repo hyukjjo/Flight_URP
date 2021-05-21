@@ -26,25 +26,37 @@ public class UIManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
-    public void SetActiveView(string name, bool active)
+    public void ActiveView(string name)
     {
         if(rootUI != null)
         {
-            rootUI.viewDic[name].gameObject.SetActive(active);
+            rootUI.viewDic[name].gameObject.SetActive(true);
         }
     }
 
-    public void SetActivePop(string name, bool active)
+    public void ActivePop(string name)
     {
         if (rootUI != null)
         {
-            rootUI.popDic[name].gameObject.SetActive(active);
+            rootUI.popDic[name].gameObject.SetActive(true);
+        }
+    }
+
+    public void HideView(string name)
+    {
+        if (rootUI != null)
+        {
+            rootUI.viewDic[name].gameObject.SetActive(false);
+        }
+    }
+
+    public void HidePop(string name)
+    {
+        if (rootUI != null)
+        {
+            rootUI.viewDic[name].gameObject.SetActive(false);
         }
     }
 
