@@ -38,6 +38,7 @@ public class BGManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Alpha1))
             SetBackGroundShapeNColor(FigureShape.CIRCLE, FigureColor.RED);
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -48,6 +49,7 @@ public class BGManager : MonoBehaviour
             SetBackGroundShapeNColor(FigureShape.PENTAGON, FigureColor.YELLOW);
         if (Input.GetKeyDown(KeyCode.Alpha5))
             SetBackGroundShapeNColor(FigureShape.HEXAGON, FigureColor.GRAY);
+#endif
     }
 
     public void Init()
@@ -97,6 +99,7 @@ public class BGManager : MonoBehaviour
         psRenderer.material.color = topColor;
         psRenderer.trailMaterial.color = bottomColor;
 
+        currentShape = shape;
         currentColor = color;
 
         corChangeColor = null;
