@@ -8,11 +8,16 @@ public class BGManager : MonoBehaviour
     [Header("BackGround Setting")]
     public Image BackGround;
     Material mat;
-    FigureColor currentColor = FigureColor.GRAY;
+    FigureColor currentColor = FigureColor.RED;
 
     [Header("BackGroung Objects Setting")]
+    public Texture[] shapes;
     public ParticleSystem ps;
     private ParticleSystemRenderer psRenderer;
+
+    private Coroutine corChangeColor = null;
+    private float changeTime = 0.5f;
+    private FigureShape currentShape = FigureShape.CIRCLE;
 
     private void Awake()
     {
@@ -20,9 +25,6 @@ public class BGManager : MonoBehaviour
             mat = BackGround.material;
         if (ps)
             psRenderer = ps.GetComponent<ParticleSystemRenderer>();
-
-
-
 
         Init();
     }
@@ -37,44 +39,99 @@ public class BGManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            SetBackGroundColor(FigureColor.RED);
+            SetBackGroundShapeNColor(FigureShape.CIRCLE, FigureColor.RED);
         if (Input.GetKeyDown(KeyCode.Alpha2))
-            SetBackGroundColor(FigureColor.GREEN);
+            SetBackGroundShapeNColor(FigureShape.TRIANGLE, FigureColor.GREEN);
         if (Input.GetKeyDown(KeyCode.Alpha3))
-            SetBackGroundColor(FigureColor.BLUE);
+            SetBackGroundShapeNColor(FigureShape.SQUARE, FigureColor.BLUE);
         if (Input.GetKeyDown(KeyCode.Alpha4))
-            SetBackGroundColor(FigureColor.YELLOW);
+            SetBackGroundShapeNColor(FigureShape.PENTAGON, FigureColor.YELLOW);
         if (Input.GetKeyDown(KeyCode.Alpha5))
-            SetBackGroundColor(FigureColor.GRAY);
+            SetBackGroundShapeNColor(FigureShape.HEXAGON, FigureColor.GRAY);
     }
 
     public void Init()
     {
+        currentColor = FigureColor.RED;
+        
         mat.SetColor("_TopColor", GetColor(FigureColor.RED) * 0.7f);
         mat.SetColor("_BottomColor", GetColor(FigureColor.RED) * 0.3f);
 
-        currentColor = FigureColor.RED;
-
         psRenderer.material.color = GetColor(FigureColor.RED) * 0.7f;
         psRenderer.trailMaterial.color = GetColor(FigureColor.RED) * 0.3f;
+
+        currentShape = FigureShape.CIRCLE;
+
+        psRenderer.material.mainTexture = shapes[(int)FigureShape.CIRCLE];
     }
 
-    public void SetBackGroundColor(FigureColor color)
+    public void SetBackGroundShapeNColor(FigureShape shape, FigureColor color)
+    {
+        if(corChangeColor == null)
+            corChangeColor = StartCoroutine(ChangeColor(shape, color));
+    }
+
+    private IEnumerator ChangeColor(FigureShape shape, FigureColor color)
     {
         Color topColor = GetColor(color) * 0.7f;
         Color bottomColor = GetColor(color) * 0.3f;
+        psRenderer.material.mainTexture = shapes[(int)shape];
+
+        float totalTime = changeTime;
+        float time = 0f;
+
+        while (time < totalTime)
+        {
+            time += Time.deltaTime;
+
+            mat.SetColor("_TopColor", Color.Lerp(GetColor(currentColor) * 0.7f, topColor, time / totalTime));
+            mat.SetColor("_BottomColor", Color.Lerp(GetColor(currentColor) * 0.3f, bottomColor, time / totalTime));
+            psRenderer.material.color = Color.Lerp(GetColor(currentColor) * 0.7f, topColor, time / totalTime);
+            psRenderer.trailMaterial.color = Color.Lerp(GetColor(currentColor) * 0.3f, bottomColor, time / totalTime);
+
+            yield return null;
+        }
 
         mat.SetColor("_TopColor", topColor);
         mat.SetColor("_BottomColor", bottomColor);
         psRenderer.material.color = topColor;
-        psRenderer.trailMaterial.color = bottomColor; ;
+        psRenderer.trailMaterial.color = bottomColor;
 
         currentColor = color;
+
+        corChangeColor = null;
+        yield break;
+    }
+
+    private Texture GetShape(FigureShape shape)
+    {
+        Texture tex = null;
+
+        switch (shape)
+        {
+            case FigureShape.CIRCLE:
+                tex = shapes[(int)FigureShape.CIRCLE];
+                break;
+            case FigureShape.TRIANGLE:
+                tex = shapes[(int)FigureShape.TRIANGLE];
+                break;
+            case FigureShape.SQUARE:
+                tex = shapes[(int)FigureShape.SQUARE];
+                break;
+            case FigureShape.PENTAGON:
+            case FigureShape.HEXAGON:
+                tex = shapes[(int)FigureShape.PENTAGON];
+                break;
+            default:
+                break;
+        }
+
+        return tex;
     }
 
     private Color GetColor(FigureColor color)
     {
-        Color c = Color.clear;
+        Color c = Color.clear; ;
 
         switch (color)
         {
