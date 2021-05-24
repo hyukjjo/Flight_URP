@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class UIViewShop : UIViewBase
 {
+    public override void InitView()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void ResetView()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

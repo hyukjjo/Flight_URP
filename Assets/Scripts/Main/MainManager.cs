@@ -13,6 +13,8 @@ public enum EMainState
 
 public class MainManager : MonoBehaviour
 {
+    public float currentPlayTime = 0f;
+
     private EMainState mainState = EMainState.MAIN;
 
     private void Awake()
@@ -20,6 +22,17 @@ public class MainManager : MonoBehaviour
         if(Application.platform.Equals(RuntimePlatform.IPhonePlayer))
         {
             Application.targetFrameRate = 60;
+        }
+
+        if (!PlayerPrefs.HasKey("IsAlreadySet"))
+        {
+            PlayerPrefs.SetInt("PlayerGold", 0);
+            PlayerPrefs.SetInt("PlayerCurrentLife", 20);
+            PlayerPrefs.SetInt("IsAlreadySet", 0);
+        }
+        else
+        {
+            Debug.Log(PlayerPrefs.GetInt("PlayerGold"));
         }
     }
 
@@ -46,5 +59,10 @@ public class MainManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void Update()
+    {
+        currentPlayTime += Time.deltaTime;
     }
 }
