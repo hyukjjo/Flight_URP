@@ -23,17 +23,6 @@ public class MainManager : MonoBehaviour
         {
             Application.targetFrameRate = 60;
         }
-
-        if (!PlayerPrefs.HasKey("IsAlreadySet"))
-        {
-            PlayerPrefs.SetInt("PlayerGold", 0);
-            PlayerPrefs.SetInt("PlayerCurrentLife", 20);
-            PlayerPrefs.SetInt("IsAlreadySet", 0);
-        }
-        else
-        {
-            Debug.Log(PlayerPrefs.GetInt("PlayerGold"));
-        }
     }
 
     // Start is called before the first frame update
