@@ -6,7 +6,7 @@ public static class LocalDB
 {
     public static bool TutorialDone
     {
-        get { return PlayerPrefs.GetInt("Tutorial Done", 0) == 1 ? true : false; }
+        get { return PlayerPrefs.GetInt("Tutorial Done", 0) == 1; }
         set { PlayerPrefs.SetInt("Tutorial Done", value ? 1 : 0); }
     }
 
