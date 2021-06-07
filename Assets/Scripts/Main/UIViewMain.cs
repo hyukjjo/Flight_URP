@@ -6,8 +6,6 @@ using System;
 
 public class UIViewMain : UIViewBase
 {
-    private int playerGold = 0;
-    private int playerCurrentLife = 20;
     private readonly int playerMaxLife = 20;
 
     public Text textPlayerGold;
@@ -16,25 +14,8 @@ public class UIViewMain : UIViewBase
 
     public override void InitView()
     {
-        if(PlayerPrefs.HasKey("PlayerGold"))
-        {
-            playerGold = PlayerPrefs.GetInt("PlayerGold");
-            textPlayerGold.text = playerGold.ToString();
-        }
-        else
-        {
-            textPlayerGold.text = playerGold.ToString();
-        }
-
-        if(PlayerPrefs.HasKey("PlayerCurrentLife"))
-        {
-            playerCurrentLife = PlayerPrefs.GetInt("PlayerCurrentLife");
-            textLife.text = playerCurrentLife.ToString() + " / " + playerMaxLife.ToString();
-        }
-        else
-        {
-            textLife.text = playerCurrentLife.ToString() + " / " + playerMaxLife.ToString();
-        }
+        textPlayerGold.text = LocalDB.PlayerGold.ToString();
+        textLife.text = LocalDB.PlayerLife.ToString() + " / " + playerMaxLife.ToString();
     }
 
     public override void ResetView()
