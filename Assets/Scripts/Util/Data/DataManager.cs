@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CSVDataManager : MonoBehaviour
+public class DataManager : MonoBehaviour
 {
     private void Awake()
     {
