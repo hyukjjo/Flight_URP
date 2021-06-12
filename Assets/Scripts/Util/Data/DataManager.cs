@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.IO;
-using System;
 
 public class PlayerData
 {
@@ -101,16 +99,6 @@ public class DataManager : MonoBehaviour
         return JsonUtility.FromJson<PlayerData>(jsonString);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            PlayerData playerData = new PlayerData();
-            ExportPlayerData(playerData);
-            playerData = null;
-        }
-    }
-
     public static DataManager Instance
     {
         get
@@ -130,6 +118,8 @@ public class DataManager : MonoBehaviour
 
         if (playerData == null)
             playerData = new PlayerData();
+
+        DontDestroyOnLoad(gameObject);
 
         LoadCSV();
         LoadPlayerData();
