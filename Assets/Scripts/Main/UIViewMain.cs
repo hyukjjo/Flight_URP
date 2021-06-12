@@ -14,8 +14,8 @@ public class UIViewMain : UIViewBase
 
     public override void InitView()
     {
-        textPlayerGold.text = LocalDB.PlayerGold.ToString();
-        textLife.text = LocalDB.PlayerLife.ToString() + " / " + playerMaxLife.ToString();
+        textPlayerGold.text = DataManager.Instance.GetPlayerData().playerGold.ToString();
+        textLife.text = DataManager.Instance.GetPlayerData().playerLife.ToString() + " / " + playerMaxLife.ToString();
     }
 
     public override void ResetView()
