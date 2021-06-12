@@ -34,61 +34,61 @@ public struct FigureData
 		shape = figureShape;
 	}
 
-	public FigureData GetRandomData()
+	public static FigureData GetRandomData(int maxIndex)
 	{
-		FigureColor color = GetRandomFigureColor();
-		FigureShape shape = GetRandomFigureShape();
+		FigureColor color = GetRandomFigureColor(maxIndex);
+		FigureShape shape = GetRandomFigureShape(maxIndex);
 
 		return new FigureData(color, shape);
 	}
 
-	public FigureData GetData(FigureData data, bool isSameColor, bool isSameShape)
+	public FigureData GetData(FigureData data, bool isSameColor, bool isSameShape, int maxIndex)
 	{
-		FigureColor color = GetFigureColor(data.color, isSameColor);
-		FigureShape shape = GetFigureShape(data.shape, isSameShape);
+		FigureColor color = GetFigureColor(data.color, isSameColor, maxIndex);
+		FigureShape shape = GetFigureShape(data.shape, isSameShape, maxIndex);
 
 		return new FigureData(color, shape);
 	}
 
-	private FigureColor GetFigureColor(FigureColor figureColor, bool isSame)
+	private FigureColor GetFigureColor(FigureColor figureColor, bool isSame, int maxIndex)
 	{
 		if (isSame)
 			return figureColor;
 		else
 		{
-			FigureColor newColor = GetRandomFigureColor();
+			FigureColor newColor = GetRandomFigureColor(maxIndex);
 			while (newColor == figureColor)
 			{
-				newColor = GetRandomFigureColor();
+				newColor = GetRandomFigureColor(maxIndex);
 			}
 
 			return newColor;
 		}
 	}
 
-	private FigureShape GetFigureShape(FigureShape figureShape, bool isSame)
+	private FigureShape GetFigureShape(FigureShape figureShape, bool isSame, int maxIndex)
 	{
 		if (isSame)
 			return figureShape;
 		else
 		{
-			FigureShape newShape = GetRandomFigureShape();
+			FigureShape newShape = GetRandomFigureShape(maxIndex);
 			while (newShape == figureShape)
 			{
-				newShape = GetRandomFigureShape();
+				newShape = GetRandomFigureShape(maxIndex);
 			}
 
 			return newShape;
 		}
 	}
 
-	private FigureColor GetRandomFigureColor()
+	private static FigureColor GetRandomFigureColor(int maxIndex)
 	{
-		return (FigureColor)Random.Range(0, (int)FigureShape.MAX);
+		return (FigureColor)Random.Range(0, maxIndex);
 	}
 
-	private FigureShape GetRandomFigureShape()
+	private static FigureShape GetRandomFigureShape(int maxIndex)
 	{
-		return (FigureShape)Random.Range(0, (int)FigureShape.MAX);
+		return (FigureShape)Random.Range(0, maxIndex);
 	}
 }
