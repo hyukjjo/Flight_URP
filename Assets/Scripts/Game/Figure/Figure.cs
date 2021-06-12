@@ -6,6 +6,8 @@ public class Figure : MonoBehaviour
 {
     public FigureData figure;
 
+    public SpriteRenderer model;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,16 @@ public class Figure : MonoBehaviour
 
     public virtual void Init()
     {
+        
+    }
 
+    public virtual void SetPosition()
+    {
+
+    }
+
+    public virtual void SetFigure(FigureData data)
+    {
+        figure = data;
     }
 }
