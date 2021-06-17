@@ -11,7 +11,7 @@ public class UIViewStageButton : UIViewBase
     public override void InitView()
     {
         if (textStageNumber == null)
-            textStageNumber = GetComponentInChildren<Text>();
+            textStageNumber = GetComponentInChildren<Text>(true);
     }
 
     public override void ResetView()
