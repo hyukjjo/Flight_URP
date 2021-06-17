@@ -22,5 +22,7 @@ public class UIViewStageButton : UIViewBase
     public void SetStageData(int index)
     {
         textStageNumber.text = DataManager.Instance.stageClass.listStage[index].stageName;
+        //Test
+        //DataManager.Instance.GetStageData("Star", index);
     }
 }

@@ -10,76 +10,26 @@ public class PlayerData
     public bool isTutorialDone = false;
     public int playerGold = 0;
     public int playerLife = 20;
-    public int stage1_1Stars = 0;
-    public int stage1_2Stars = 0;
-    public int stage1_3Stars = 0;
-    public int stage1_4Stars = 0;
-    public int stage1_5Stars = 0;
-    public int stage1_6Stars = 0;
-    public int stage1_7Stars = 0;
-    public int stage1_8Stars = 0;
-    public int stage1_9Stars = 0;
-    public int stage1_10Stars = 0;
-    public int stage2_1Stars = 0;
-    public int stage2_2Stars = 0;
-    public int stage2_3Stars = 0;
-    public int stage2_4Stars = 0;
-    public int stage2_5Stars = 0;
-    public int stage2_6Stars = 0;
-    public int stage2_7Stars = 0;
-    public int stage2_8Stars = 0;
-    public int stage2_9Stars = 0;
-    public int stage2_10Stars = 0;
-    public int stage3_1Stars = 0;
-    public int stage3_2Stars = 0;
-    public int stage3_3Stars = 0;
-    public int stage3_4Stars = 0;
-    public int stage3_5Stars = 0;
-    public int stage3_6Stars = 0;
-    public int stage3_7Stars = 0;
-    public int stage3_8Stars = 0;
-    public int stage3_9Stars = 0;
-    public int stage3_10Stars = 0;
-    public int stage1_1Score = 0;
-    public int stage1_2Score = 0;
-    public int stage1_3Score = 0;
-    public int stage1_4Score = 0;
-    public int stage1_5Score = 0;
-    public int stage1_6Score = 0;
-    public int stage1_7Score = 0;
-    public int stage1_8Score = 0;
-    public int stage1_9Score = 0;
-    public int stage1_10Score = 0;
-    public int stage2_1Score = 0;
-    public int stage2_2Score = 0;
-    public int stage2_3Score = 0;
-    public int stage2_4Score = 0;
-    public int stage2_5Score = 0;
-    public int stage2_6Score = 0;
-    public int stage2_7Score = 0;
-    public int stage2_8Score = 0;
-    public int stage2_9Score = 0;
-    public int stage2_10Score = 0;
-    public int stage3_1Score = 0;
-    public int stage3_2Score = 0;
-    public int stage3_3Score = 0;
-    public int stage3_4Score = 0;
-    public int stage3_5Score = 0;
-    public int stage3_6Score = 0;
-    public int stage3_7Score = 0;
-    public int stage3_8Score = 0;
-    public int stage3_9Score = 0;
-    public int stage3_10Score = 0;
+    public List<int> stageScore = new List<int>(30);
+    public List<int> stageStar = new List<int>(30);
 }
 
 public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
     private PlayerData playerData = null;
+    private Dictionary<string, List<int>> stageData = new Dictionary<string, List<int>>();
 
     public PlayerData GetPlayerData()
     {
         return playerData;
+    }
+
+    public int GetStageData(string key, int index)
+    {
+        List<int> value;
+        stageData.TryGetValue(key, out value);
+        return value[index];
     }
 
     public void ExportPlayerData(object data)
@@ -116,23 +66,25 @@ public class DataManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
-        if (playerData == null)
-            playerData = new PlayerData();
-
         DontDestroyOnLoad(gameObject);
 
         LoadCSV();
         LoadPlayerData();
     }
 
+
+
     private void LoadPlayerData()
     {
         playerData = ReadPlayerData();
+        stageData.Add("Score", playerData.stageScore);
+        stageData.Add("Star", playerData.stageStar);
     }
 
     public void SavePlayerData()
     {
-        ExportPlayerData(playerData);
+        if(playerData != null)
+            ExportPlayerData(playerData);
     }
 
     public string file_Stage = "FlightTable_Stage";

@@ -39,18 +39,6 @@ public class UIViewStage : UIViewBase
 
     public override void ResetView()
     {
-        throw new System.NotImplementedException();
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
