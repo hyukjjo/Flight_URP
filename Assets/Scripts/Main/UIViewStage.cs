@@ -34,6 +34,7 @@ public class UIViewStage : UIViewBase
 
     public override void InitView()
     {
+        //Set stage1 as default
         SetStage(1);
     }
 
