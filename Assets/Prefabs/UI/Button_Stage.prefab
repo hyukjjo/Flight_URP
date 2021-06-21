@@ -518,4 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textStageNumber: {fileID: 5033939033776930431}
-  stars: []
+  stars:
+  - {fileID: 5033939033557237616}
+  - {fileID: 5033939033458428633}
+  - {fileID: 5033939034212333451}
