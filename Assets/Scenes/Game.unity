@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 64697420}
   stage: 1
-  enemySpeed: 0.05
+  enemySpeed: 0.1
   models:
   - {fileID: 21300000, guid: 6ddd47aa5d4c9408a9d5222db28c8506, type: 3}
   - {fileID: 21300000, guid: 4d1a19f1bf15f401496406ef535a6e0e, type: 3}
