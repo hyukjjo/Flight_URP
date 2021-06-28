@@ -10,26 +10,36 @@ public class PlayerData
     public bool isTutorialDone = false;
     public int playerGold = 0;
     public int playerLife = 20;
-    public List<int> stageScore = new List<int>(30);
-    public List<int> stageStar = new List<int>(30);
+    
+}
+
+public class StageData
+{
+    public List<sStageData> stageDataList = new List<sStageData>();
+}
+
+[System.Serializable]
+public struct sStageData
+{
+    public int stageScore;
+    public int stageStar;
 }
 
 public class DataManager : MonoBehaviour
 {
     private static DataManager instance = null;
     private PlayerData playerData = null;
-    private Dictionary<string, List<int>> stageData = new Dictionary<string, List<int>>();
+    private StageData stageData = null;
+    
 
     public PlayerData GetPlayerData()
     {
         return playerData;
     }
 
-    public int GetStageData(string key, int index)
+    public sStageData GetStageData(int index)
     {
-        List<int> value;
-        stageData.TryGetValue(key, out value);
-        return value[index];
+        return stageData.stageDataList[index];
     }
 
     public void ExportPlayerData(object data)
@@ -41,12 +51,29 @@ public class DataManager : MonoBehaviour
         streamWriter.Close();
     }
 
+    public void ExportStageData(object data)
+    {
+        string jsonString = JsonUtility.ToJson(data);
+        FileStream fileStream = new FileStream("Assets/Resources/Data/StageData.json", FileMode.Create);
+        StreamWriter streamWriter = new StreamWriter(fileStream);
+        streamWriter.Write(jsonString);
+        streamWriter.Close();
+    }
+
     public PlayerData ReadPlayerData()
     {
         FileStream fileStream = new FileStream("Assets/Resources/Data/PlayerData.json", FileMode.Open);
         StreamReader streamReader = new StreamReader(fileStream);
         string jsonString = streamReader.ReadToEnd();
         return JsonUtility.FromJson<PlayerData>(jsonString);
+    }
+
+    public StageData ReadStageData()
+    {
+        FileStream fileStream = new FileStream("Assets/Resources/Data/StageData.json", FileMode.Open);
+        StreamReader streamReader = new StreamReader(fileStream);
+        string jsonString = streamReader.ReadToEnd();
+        return JsonUtility.FromJson<StageData>(jsonString);
     }
 
     public static DataManager Instance
@@ -69,22 +96,24 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         LoadCSV();
-        LoadPlayerData();
+        LoadData();
     }
 
 
 
-    private void LoadPlayerData()
+    private void LoadData()
     {
         playerData = ReadPlayerData();
-        stageData.Add("Score", playerData.stageScore);
-        stageData.Add("Star", playerData.stageStar);
+        stageData = ReadStageData();
     }
 
-    public void SavePlayerData()
+    public void SaveData()
     {
         if(playerData != null)
             ExportPlayerData(playerData);
+
+        if (stageData != null)
+            ExportStageData(stageData);
     }
 
     public string file_Stage = "FlightTable_Stage";
@@ -110,6 +139,6 @@ public class DataManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SavePlayerData();
+        SaveData();
     }
 }
