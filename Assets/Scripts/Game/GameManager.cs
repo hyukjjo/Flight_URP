@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour
     public int stage = 1;
     public int Stage { get { return stage + 2; } set { stage = value; } }
 
-
-
+    [Range(0.0f, 10f)]
+    public float enemySpeed = 0.1f;
+    public float EnemySpeed { get { return enemySpeed; } set { enemySpeed = value; } }
 
 
 

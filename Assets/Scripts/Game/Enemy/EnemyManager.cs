@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPos : MonoBehaviour
+public class EnemyManager : MonoBehaviour
 {
     private float oddX = 0f;
     private float evenX = 0.75f;
     private float offset = 1.5f;
 
+    public GameObject enemyPrefab;
+    public EnemyGroup enemyGroup;
     public List<GameObject> enemys = new List<GameObject>();
 
     private int enemyCount = 0;
+
+    private void Awake()
+    {
+        enemyGroup = GetComponentInChildren<EnemyGroup>();
+        enemyGroup.CallBackEnd += CreateEnemyParant;
+        enemyGroup.enabled = false;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +36,8 @@ public class EnemyPos : MonoBehaviour
 
     public void Init()
     {
+        enemyGroup.enabled = false;
+
         foreach (var enemy in enemys)
         {
             Destroy(enemy);
@@ -39,20 +50,20 @@ public class EnemyPos : MonoBehaviour
         Init();
 
         enemyCount = GameManager.Instance.Stage;
-        GameObject temp = new GameObject();
         GameObject enemy;
 
         for (int i = 0; i < enemyCount; i++)
         {
-            enemy = Instantiate(temp, transform);
+            enemy = Instantiate(enemyPrefab, enemyGroup.transform);
             enemy.name = "Enemy " + i;
+            enemy.tag = "Enemy";
             enemy.transform.localPosition = Vector3.zero;
             enemy.transform.localRotation = Quaternion.identity;
             enemys.Add(enemy);
         }
 
-        Destroy(temp);
         SetEnemyPosition();
+        enemyGroup.enabled = true;
     }
 
     public void SetEnemyPosition()
@@ -69,5 +80,10 @@ public class EnemyPos : MonoBehaviour
                     enemys[j].transform.localPosition = enemys[j - 1].transform.localPosition + new Vector3(offset, 0f, 0f);
             }
         }
+    }
+
+    public void DestroyEnemy()
+    {
+        enemyGroup.enabled = false;
     }
 }
