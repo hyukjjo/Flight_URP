@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Figure : MonoBehaviour
 {
+    [Header("----------Common----------")]
     public FigureData figure;
 
     public SpriteRenderer model;

@@ -26,10 +26,13 @@ public class GameManager : MonoBehaviour
     public GameState currentState;
 
     public Player player;
+    public GameUI gameUI;
     public int stage = 1;
     public int Stage { get { return stage + 2; } set { stage = value; } }
 
-    [Range(0.0f, 10f)]
+    public int enemyCount = 3;
+    public int EnemyCount { get { return enemyCount; } set { enemyCount = value; } }
+
     public float enemySpeed = 0.1f;
     public float EnemySpeed { get { return enemySpeed; } set { enemySpeed = value; } }
 
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = -1;
 
         Init();
     }
@@ -65,6 +68,7 @@ public class GameManager : MonoBehaviour
     public void Init()
     {
         player.Init();
+        gameUI.Init();
     }
 
     private void SetState(GameState state)

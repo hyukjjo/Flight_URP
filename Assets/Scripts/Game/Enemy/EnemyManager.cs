@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
     {
         Init();
 
-        enemyCount = GameManager.Instance.Stage;
+        enemyCount = GameManager.Instance.EnemyCount;
         GameObject enemy;
 
         for (int i = 0; i < enemyCount; i++)

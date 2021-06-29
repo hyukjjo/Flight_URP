@@ -12,7 +12,7 @@ public class EnemyGroup : MonoBehaviour
 
     private void Awake()
     {
-        initPos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 2f, 0f));
+        initPos = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * 0.5f, Screen.height * 2f));
         enabled = false;
     }
 
