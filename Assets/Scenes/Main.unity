@@ -5771,6 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226c04cbef841ad4ebb29d0b592d65f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textPlayerGold: {fileID: 1132556167}
 --- !u!1 &711524733
 GameObject:
   m_ObjectHideFlags: 0
@@ -6444,6 +6445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textStageNumber: {fileID: 1153203922}
+  textScore: {fileID: 0}
   stars: []
 --- !u!1 &730434114
 GameObject:

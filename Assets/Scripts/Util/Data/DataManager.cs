@@ -5,12 +5,11 @@ using System.IO;
 
 public class PlayerData
 {
-    public string startDateTime = string.Empty;
-    public string exitDateTime = string.Empty;
+    public string startDate = string.Empty;
+    public string exitDate = string.Empty;
     public bool isTutorialDone = false;
     public int playerGold = 0;
     public int playerLife = 20;
-    
 }
 
 public class StageData
@@ -40,6 +39,33 @@ public class DataManager : MonoBehaviour
     public sStageData GetStageData(int index)
     {
         return stageData.stageDataList[index];
+    }
+
+    public void SetPlayerData(string name, object value)
+    {
+        switch(name)
+        {
+            case "StartDate":
+                break;
+            case "ExitDate":
+                break;
+            case "Tutorial":
+                playerData.isTutorialDone = (bool)value;
+                break;
+            case "PlayerGold":
+                playerData.playerGold = (int)value;
+                break;
+            case "PlayerLife":
+                playerData.playerLife = (int)value;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SetStageData(int index, int score, int star)
+    {
+        stageData.stageDataList[index] = new sStageData { stageScore = score, stageStar = star };
     }
 
     public void ExportPlayerData(object data)
@@ -98,8 +124,6 @@ public class DataManager : MonoBehaviour
         LoadCSV();
         LoadData();
     }
-
-
 
     private void LoadData()
     {
