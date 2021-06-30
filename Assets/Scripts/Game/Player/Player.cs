@@ -150,4 +150,9 @@ public class Player : Figure
         }
         transform.position = endPos;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.name);
+    }
 }
