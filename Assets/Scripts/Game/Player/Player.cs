@@ -153,7 +153,11 @@ public class Player : Figure
         moveNextPos = endPos;
 
         if (!CheckNextMove(moveNextPos))
+        {
+            corMove = null;
+            moveNextPos = Vector2.zero;
             yield break;
+        }
 
         yield return null;
 
