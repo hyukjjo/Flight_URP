@@ -6,7 +6,7 @@ public class Player : Figure
 {
     [Header("----------Player----------")]
     public bool isTouchable = false;
-    public bool isMoving = false;
+    //public bool isMoving = false;
 
     private Vector2 touchPos = Vector2.zero;
     private float screenCenterX = Screen.width * 0.5f;
@@ -14,6 +14,9 @@ public class Player : Figure
     private Vector2 endSwipePos = Vector2.zero;
     private float swipeX = 0f;
     private float moveTime = 0.1f;
+    private Coroutine corMove = null;
+    private Vector2 moveNextPos = Vector2.zero;
+    private List<GameObject> enemys = new List<GameObject>();
 
     public SpriteRenderer facial;
 
@@ -66,7 +69,7 @@ public class Player : Figure
             if (Input.GetMouseButtonDown(0))
             {
                 touchPos = Input.mousePosition;
-                StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
+                corMove = StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
 
                 touchPos = Vector2.zero;
             }
@@ -78,7 +81,7 @@ public class Player : Figure
                 if(touch.phase == TouchPhase.Began)
                 {
                     startSwipePos = touch.position;
-                    StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
+                    corMove = StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
 
                     touchPos = Vector2.zero;
                 }
@@ -98,7 +101,7 @@ public class Player : Figure
             {
                 endSwipePos = Input.mousePosition;
                 swipeX = endSwipePos.x - startSwipePos.x;
-                StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
+                corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
 
                 startSwipePos = Vector2.zero;
                 endSwipePos = Vector2.zero;
@@ -117,7 +120,7 @@ public class Player : Figure
                 {
                     endSwipePos = touch.position;
                     swipeX = endSwipePos.x - startSwipePos.x;
-                    StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
+                    corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
 
                     startSwipePos = Vector2.zero;
                     endSwipePos = Vector2.zero;
@@ -130,13 +133,27 @@ public class Player : Figure
 
     private IEnumerator MovePlayer(float directionX)
     {
-        if (isMoving)
+        if (corMove != null)
+        {
+            transform.position = moveNextPos;
+            moveNextPos = Vector2.zero;
+            StopAllCoroutines();
+            corMove = null;
+            corMove = StartCoroutine(MovePlayer(directionX));
             yield break;
+        }
+
+        //if (isMoving)
+        //    yield break;
 
         float timer = 0f;
 
         Vector2 startPos = transform.position;
         Vector2 endPos = startPos + new Vector2(directionX * offset, 0f);
+        moveNextPos = endPos;
+
+        if (!CheckNextMove(moveNextPos))
+            yield break;
 
         yield return null;
 
@@ -149,6 +166,30 @@ public class Player : Figure
             yield return null;
         }
         transform.position = endPos;
+
+        corMove = null;
+        moveNextPos = Vector2.zero;
+    }
+
+    private bool CheckNextMove(Vector2 nextPos)
+    {
+        bool move = true;
+
+        if (enemys.Count == 0)
+        {
+            enemys = GameManager.Instance.enemyManager.enemys;
+
+            if (enemys.Count == 0)
+                move = false;
+        }
+
+        if (enemys.Count > 0)
+        {
+            if (nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
+                move = false;
+        }
+
+        return move;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

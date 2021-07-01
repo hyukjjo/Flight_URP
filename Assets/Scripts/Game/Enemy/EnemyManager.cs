@@ -21,6 +21,11 @@ public class EnemyManager : MonoBehaviour
         enemyGroup.enabled = false;
     }
 
+    private void OnDisable()
+    {
+        enemyGroup.CallBackEnd -= CreateEnemyParant;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

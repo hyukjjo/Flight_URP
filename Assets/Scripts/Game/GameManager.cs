@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameState currentState;
 
     public Player player;
+    public EnemyManager enemyManager;
     public GameUI gameUI;
     public int stage = 1;
     public int Stage { get { return stage; } set { stage = value; } }
