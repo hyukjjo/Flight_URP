@@ -61,6 +61,7 @@ public class DataManager : MonoBehaviour
             default:
                 break;
         }
+
     }
 
     public void SetStageData(int index, int score, int star)
