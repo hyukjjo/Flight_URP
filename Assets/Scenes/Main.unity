@@ -4488,6 +4488,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_Stage5
       objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 19980471}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
 --- !u!224 &496618529 stripped
@@ -6431,7 +6459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 727516047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 727516050}
+        m_TargetAssemblyTypeName: UIViewStageButton, Assembly-CSharp
+        m_MethodName: SetStageInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &727516050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6444,6 +6484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb9aeb8476fd6947a5d5971ac6dfa0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageIndex: 0
   textStageNumber: {fileID: 1153203922}
   textScore: {fileID: 0}
   stars: []
@@ -7431,6 +7472,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_Stage3
       objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1178744383}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
 --- !u!224 &800734109 stripped
@@ -8213,6 +8282,34 @@ PrefabInstance:
     - target: {fileID: 5033939034251978739, guid: 710f9330360098346baabd8e71666617, type: 3}
       propertyPath: m_Name
       value: Button_Stage4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1832306444}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
@@ -14726,6 +14823,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_Stage9
       objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1412966847}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
 --- !u!224 &1619660866 stripped
@@ -16476,6 +16601,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_Stage7
       objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 272963508}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
 --- !u!224 &1787430034 stripped
@@ -16941,6 +17094,34 @@ PrefabInstance:
     - target: {fileID: 5033939034251978739, guid: 710f9330360098346baabd8e71666617, type: 3}
       propertyPath: m_Name
       value: Button_Stage6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1517316898}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
@@ -19388,6 +19569,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_Stage8
       objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 86781225}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
 --- !u!224 &2076902193 stripped
@@ -19580,6 +19789,34 @@ PrefabInstance:
     - target: {fileID: 5033939034251978739, guid: 710f9330360098346baabd8e71666617, type: 3}
       propertyPath: m_Name
       value: Button_Stage2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 219182670}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}
@@ -20056,18 +20293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 278488318}
     m_Modifications:
-    - target: {fileID: 5033939033458428633, guid: 710f9330360098346baabd8e71666617, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033939033557237616, guid: 710f9330360098346baabd8e71666617, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033939034212333451, guid: 710f9330360098346baabd8e71666617, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5033939034251978736, guid: 710f9330360098346baabd8e71666617, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20155,6 +20380,34 @@ PrefabInstance:
     - target: {fileID: 5033939034251978739, guid: 710f9330360098346baabd8e71666617, type: 3}
       propertyPath: m_Name
       value: Button_Stage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 595671358}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetStageInfo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIViewStageButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033939034251978743, guid: 710f9330360098346baabd8e71666617, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 710f9330360098346baabd8e71666617, type: 3}

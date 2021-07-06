@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIViewStageButton : UIViewBase
 {
+    public int stageIndex;
     public Text textStageNumber;
     public Text textScore;
     public GameObject[] stars;
@@ -23,6 +24,8 @@ public class UIViewStageButton : UIViewBase
 
     public void SetStageData(int index)
     {
+        stageIndex = index;
+
         textStageNumber.text = DataManager.Instance.stageClass.listStage[index].stageName;
 
         if (textScore != null)
@@ -39,5 +42,10 @@ public class UIViewStageButton : UIViewBase
         {
             stars[i].SetActive(true);
         }
+    }
+
+    public void SetStageInfo()
+    {
+        StageInfo.Instance.SetStageInfo(stageIndex);
     }
 }
