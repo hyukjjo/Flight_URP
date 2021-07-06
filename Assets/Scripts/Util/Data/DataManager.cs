@@ -21,7 +21,9 @@ public class StageData
 public struct sStageData
 {
     public int stageScore;
-    public int stageStar;
+    public int stageComboMission;
+    public int stageColorMission;
+    public int stageShapeMission;
 }
 
 public class DataManager : MonoBehaviour
@@ -64,9 +66,15 @@ public class DataManager : MonoBehaviour
 
     }
 
-    public void SetStageData(int index, int score, int star)
+    public void SetStageData(int index, int score, int comboMission, int colorMission, int shapeMission)
     {
-        stageData.stageDataList[index] = new sStageData { stageScore = score, stageStar = star };
+        stageData.stageDataList[index] = new sStageData 
+        { 
+            stageScore = score, 
+            stageComboMission = comboMission,
+            stageColorMission = colorMission,
+            stageShapeMission = shapeMission
+        };
     }
 
     public void ExportPlayerData(object data)

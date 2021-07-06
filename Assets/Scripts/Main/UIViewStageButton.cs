@@ -30,7 +30,10 @@ public class UIViewStageButton : UIViewBase
             textScore.text = DataManager.Instance.GetStageData(index).stageScore.ToString();
         }
 
-        starCount = DataManager.Instance.GetStageData(index).stageStar;
+        starCount = 
+            DataManager.Instance.GetStageData(index).stageComboMission + 
+            DataManager.Instance.GetStageData(index).stageColorMission + 
+            DataManager.Instance.GetStageData(index).stageShapeMission;
 
         for(int i = 0; i < starCount; i++)
         {

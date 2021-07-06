@@ -9,9 +9,9 @@ public class StageInfo : MonoBehaviour
     public string stageName;
     public float speedIncrement;
     public int figureCount;
-    public int comboMission;
-    public int colorMission;
-    public int shapeMission;
+    public int comboMissionCount;
+    public int colorMissionCount;
+    public int shapeMissionCount;
     public int goldReward;
     public int bestScore;
 
@@ -20,7 +20,6 @@ public class StageInfo : MonoBehaviour
     {
         get
         {
-
             if(instance == null)
             {
                 instance = FindObjectOfType<StageInfo>();
@@ -37,4 +36,3 @@ public class StageInfo : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 }
-
