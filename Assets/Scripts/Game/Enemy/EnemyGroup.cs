@@ -46,7 +46,7 @@ public class EnemyGroup : MonoBehaviour
         if (isVisible)
         {
             transform.position = initPos;
-            CallBackEnd();
+            CallBackEnd?.Invoke();
         }
     }
 

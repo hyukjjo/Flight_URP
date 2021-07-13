@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
         enemyGroup.enabled = false;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         enemyGroup.CallBackEnd -= CreateEnemys;
     }
