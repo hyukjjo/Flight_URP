@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class PlayerData
 {
-    public string startDate = string.Empty;
-    public string exitDate = string.Empty;
+    public string LastExitDate = string.Empty;
     public bool isTutorialDone = false;
     public int playerGold = 0;
     public int playerLife = 20;
@@ -47,9 +47,8 @@ public class DataManager : MonoBehaviour
     {
         switch(name)
         {
-            case "StartDate":
-                break;
-            case "ExitDate":
+            case "LastExitDate":
+                playerData.LastExitDate = (string)value;
                 break;
             case "Tutorial":
                 playerData.isTutorialDone = (bool)value;
@@ -63,7 +62,6 @@ public class DataManager : MonoBehaviour
             default:
                 break;
         }
-
     }
 
     public void SetStageData(int index, int score, int comboMission, int colorMission, int shapeMission)
@@ -172,6 +170,7 @@ public class DataManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        SetPlayerData("LastExitDate", DateTime.Now.ToString("yyyy-MM-dd/HH:mm:ss"));
         SaveData();
     }
 }
