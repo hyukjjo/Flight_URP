@@ -18,7 +18,6 @@ public class StageInfo : MonoBehaviour
     public int colorMission;
     public int shapeMission;
 
-
     public static StageInfo Instance
     {
         get

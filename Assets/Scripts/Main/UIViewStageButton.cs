@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIViewStageButton : UIViewBase
 {
@@ -11,10 +12,12 @@ public class UIViewStageButton : UIViewBase
     public GameObject[] stars;
 
     private int starCount = 0;
+    private Button button;
 
     public override void InitView()
     {
-
+        button = GetComponent<Button>();
+        button.onClick.AddListener(StartGame);
     }
 
     public override void ResetView()
@@ -44,8 +47,9 @@ public class UIViewStageButton : UIViewBase
         }
     }
 
-    public void SetStageInfo()
+    public void StartGame()
     {
         StageInfo.Instance.SetStageInfo(stageIndex);
+        SceneManager.LoadScene("Game");
     }
 }
