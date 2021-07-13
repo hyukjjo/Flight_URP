@@ -17,13 +17,13 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         enemyGroup = GetComponentInChildren<EnemyGroup>();
-        enemyGroup.CallBackEnd += CreateEnemyParant;
+        enemyGroup.CallBackEnd += CreateEnemys;
         enemyGroup.enabled = false;
     }
 
     private void OnDisable()
     {
-        enemyGroup.CallBackEnd -= CreateEnemyParant;
+        enemyGroup.CallBackEnd -= CreateEnemys;
     }
 
     // Start is called before the first frame update
@@ -36,7 +36,7 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
-            CreateEnemyParant();
+            CreateEnemys();
     }
 
     public void Init()
@@ -47,10 +47,10 @@ public class EnemyManager : MonoBehaviour
         {
             Destroy(enemy);
         }
-        enemys.Clear();
+        enemys.Clear(); 
     }
 
-    public void CreateEnemyParant()
+    public void CreateEnemys()
     {
         Init();
 

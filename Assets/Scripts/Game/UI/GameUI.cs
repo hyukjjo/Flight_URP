@@ -24,6 +24,7 @@ public class GameUI : MonoBehaviour
 
     public void Init()
     {
-
+        txtStage.text = StageInfo.Instance.stageName;
+        txtBestScore.text = string.Format("{0:n0}", StageInfo.Instance.bestScore);
     }
 }

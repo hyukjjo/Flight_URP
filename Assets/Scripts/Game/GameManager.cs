@@ -68,6 +68,9 @@ public class GameManager : MonoBehaviour
 
     public void Init()
     {
+        enemyCount = StageInfo.Instance.figureCount;
+        enemySpeed = StageInfo.Instance.speedIncrement;
+
         player.Init();
         gameUI.Init();
     }
