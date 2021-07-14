@@ -1617,7 +1617,7 @@ GameObject:
   - component: {fileID: 156402814}
   - component: {fileID: 156402818}
   m_Layer: 5
-  m_Name: UIView_Stage
+  m_Name: UIViewStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3894,8 +3894,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 425838004}
+  - component: {fileID: 425838005}
   m_Layer: 0
-  m_Name: LifeTimer
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3915,6 +3916,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &425838005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425838003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f511c7722d3d92b46a3bd128fec6ca74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLife: 0
+  lastExitDate: 
+  rewardPeriod: 0
 --- !u!1 &430999975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,7 +5742,7 @@ GameObject:
   - component: {fileID: 667782467}
   - component: {fileID: 667782471}
   m_Layer: 5
-  m_Name: UIView_Shop
+  m_Name: UIViewShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9490,7 +9506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345f48aafe7cc474086b4c01728042c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPlayTime: 0
 --- !u!4 &1025242947
 Transform:
   m_ObjectHideFlags: 0
@@ -11606,7 +11621,7 @@ GameObject:
   - component: {fileID: 1312218250}
   - component: {fileID: 1312218249}
   m_Layer: 5
-  m_Name: Text_LifeRewardTime
+  m_Name: Text_RewardTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11664,7 +11679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '15 : 00'
+  m_Text: '10 : 00'
 --- !u!222 &1312218250
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11836,8 +11851,9 @@ GameObject:
   - component: {fileID: 1345667665}
   - component: {fileID: 1345667667}
   - component: {fileID: 1345667666}
+  - component: {fileID: 1345667668}
   m_Layer: 5
-  m_Name: Panel_Life
+  m_Name: UIViewLife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11902,6 +11918,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1345667664}
   m_CullTransparentMesh: 1
+--- !u!114 &1345667668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345667664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9af22d1f6384045ac793c408d4ac46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textLife: {fileID: 2126508818}
 --- !u!1 &1346988725
 GameObject:
   m_ObjectHideFlags: 0
@@ -13351,7 +13380,7 @@ GameObject:
   - component: {fileID: 1492086272}
   - component: {fileID: 1492086276}
   m_Layer: 5
-  m_Name: UIView_Mission
+  m_Name: UIViewMission
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13944,13 +13973,14 @@ GameObject:
   - component: {fileID: 1539020217}
   - component: {fileID: 1539020219}
   - component: {fileID: 1539020218}
+  - component: {fileID: 1539020220}
   m_Layer: 5
-  m_Name: Panel_RewardLife
+  m_Name: UIViewRewardTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1539020217
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14010,6 +14040,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539020216}
   m_CullTransparentMesh: 1
+--- !u!114 &1539020220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539020216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0db30e0acc8b247be1f1b1a886566d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1557110432
 GameObject:
   m_ObjectHideFlags: 0
@@ -16169,7 +16211,7 @@ GameObject:
   - component: {fileID: 1768270550}
   - component: {fileID: 1768270554}
   m_Layer: 5
-  m_Name: UIView_Main
+  m_Name: UIViewMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16273,8 +16315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPlayerGold: {fileID: 1573428144}
-  textLife: {fileID: 2126508818}
-  textLifeRewardTime: {fileID: 1312218249}
 --- !u!1 &1773014151
 GameObject:
   m_ObjectHideFlags: 0

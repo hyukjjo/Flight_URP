@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
     private UIPopBase[] pops;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         views = GetComponentsInChildren<UIViewBase>(true);
         pops = GetComponentsInChildren<UIPopBase>(true);

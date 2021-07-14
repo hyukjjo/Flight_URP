@@ -31,10 +31,14 @@ public class DataManager : MonoBehaviour
     private static DataManager instance = null;
     private PlayerData playerData = null;
     private StageData stageData = null;
-    
+
+    public Action OnChangedPlayerData;
 
     public PlayerData GetPlayerData()
     {
+        if (playerData == null)
+            LoadData();
+
         return playerData;
     }
 
@@ -62,6 +66,8 @@ public class DataManager : MonoBehaviour
             default:
                 break;
         }
+
+        OnChangedPlayerData?.Invoke();
     }
 
     public void SetStageData(int index, int score, int comboMission, int colorMission, int shapeMission)
@@ -134,8 +140,11 @@ public class DataManager : MonoBehaviour
 
     private void LoadData()
     {
-        playerData = ReadPlayerData();
-        stageData = ReadStageData();
+        if(playerData == null)
+            playerData = ReadPlayerData();
+
+        if(stageData == null)
+            stageData = ReadStageData();
     }
 
     public void SaveData()
@@ -170,7 +179,7 @@ public class DataManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SetPlayerData("LastExitDate", DateTime.Now.ToString("yyyy-MM-dd/HH:mm:ss"));
+        SetPlayerData("LastExitDate", DateTime.Now.ToString());
         SaveData();
     }
 }

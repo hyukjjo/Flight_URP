@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum EMainState
 {
@@ -8,14 +9,20 @@ public enum EMainState
     SHOP,
     RANKING,
     SETTINGS,
-    STAGE
+    STAGE,
+    MISSION
 }
 
 public class MainManager : MonoBehaviour
 {
-    public float currentPlayTime = 0f;
+    public static Action mainCallback;
+    public static Action shopCallback;
+    public static Action rankingCallback;
+    public static Action settingsCallback;
+    public static Action stageCallback;
+    public static Action missionCallback;
 
-    private EMainState mainState = EMainState.MAIN;
+    private static EMainState mainState = EMainState.MAIN;
 
     private void Awake()
     {
@@ -25,33 +32,36 @@ public class MainManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public void SetMainState(EMainState state)
+    public static void SetMainState(EMainState state)
     {
         switch (state)
         {
             case EMainState.MAIN:
+                mainState = EMainState.MAIN;
+                mainCallback?.Invoke();
                 break;
             case EMainState.SHOP:
+                mainState = EMainState.SHOP;
+                shopCallback?.Invoke();
                 break;
             case EMainState.RANKING:
+                mainState = EMainState.RANKING;
+                rankingCallback?.Invoke();
                 break;
             case EMainState.SETTINGS:
+                mainState = EMainState.SETTINGS;
+                settingsCallback?.Invoke();
                 break;
             case EMainState.STAGE:
+                mainState = EMainState.STAGE;
+                stageCallback?.Invoke();
+                break;
+            case EMainState.MISSION:
+                mainState = EMainState.MISSION;
+                missionCallback?.Invoke();
                 break;
             default:
                 break;
         }
-    }
-
-    private void Update()
-    {
-        currentPlayTime += Time.deltaTime;
     }
 }
