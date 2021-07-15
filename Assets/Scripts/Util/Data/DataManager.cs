@@ -179,7 +179,9 @@ public class DataManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        SetPlayerData("LastExitDate", DateTime.Now.ToString());
+        DateTime dt = DateTime.Now;
+        dt.AddSeconds(-Timer.GetTime());
+        SetPlayerData("LastExitDate", dt.ToString());
         SaveData();
     }
 }

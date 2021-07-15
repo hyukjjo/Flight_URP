@@ -540,7 +540,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Stage
+          m_StringArgument: UIViewStage
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1965982386}
@@ -552,7 +552,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Main
+          m_StringArgument: UIViewMain
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &44109660
@@ -3930,7 +3930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLife: 0
   lastExitDate: 
-  rewardPeriod: 0
+  rewardPeriod: 600
 --- !u!1 &430999975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5938,7 +5938,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Main
+          m_StringArgument: UIViewMain
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1965982386}
@@ -5950,7 +5950,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Mission
+          m_StringArgument: UIViewMission
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &711524736
@@ -9278,7 +9278,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Main
+          m_StringArgument: UIViewMain
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1004420424
@@ -14052,6 +14052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed0db30e0acc8b247be1f1b1a886566d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textRewardTime: {fileID: 1312218249}
 --- !u!1 &1557110432
 GameObject:
   m_ObjectHideFlags: 0
@@ -17879,7 +17880,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Main
+          m_StringArgument: UIViewMain
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1884196540
@@ -18012,7 +18013,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Main
+          m_StringArgument: UIViewMain
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1965982386}
@@ -18024,7 +18025,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Shop
+          m_StringArgument: UIViewShop
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1904552870
@@ -18449,7 +18450,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Main
+          m_StringArgument: UIViewMain
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1965982386}
@@ -18461,7 +18462,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: UIView_Stage
+          m_StringArgument: UIViewStage
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1932294173

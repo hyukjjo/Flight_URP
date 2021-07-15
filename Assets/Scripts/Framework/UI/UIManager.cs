@@ -60,16 +60,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void HideAllView()
-    {
-        if (rootUI != null)
-        {
-            foreach(UIViewBase view in rootUI.viewDic.Values)
-            {
-                view.gameObject.SetActive(false);
-            }
-        }
-    }
+    //public void HideAllView()
+    //{
+    //    if (rootUI != null)
+    //    {
+    //        foreach(UIViewBase view in rootUI.viewDic.Values)
+    //        {
+    //            view.gameObject.SetActive(false);
+    //        }
+    //    }
+    //}
 
     public void HideAllPop()
     {

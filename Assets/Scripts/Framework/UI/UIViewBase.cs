@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class UIViewBase : MonoBehaviour
 {
-    private void OnEnable()
+    private void Start()
     {
         InitView();
     }

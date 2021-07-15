@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIViewLife : UIViewBase
 {
+
     public Text textLife;
 
     private readonly int playerMaxLife = 20;
