@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     private static float coolTime;
     private static bool isOnCoolTime = false;
     private int rewardLife;
-    private static int remainingTime;
+    private float remainingTime;
 
     public int currentLife;
     public string lastExitDate;
@@ -26,8 +26,9 @@ public class Timer : MonoBehaviour
         {
             coolTime += Time.deltaTime;
 
-            if(coolTime >= rewardPeriod)
+            if (coolTime >= rewardPeriod)
             {
+                coolTime = 0f;
                 currentLife++;
                 DataManager.Instance.SetPlayerData("PlayerLife", currentLife);
 
@@ -39,6 +40,11 @@ public class Timer : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerPrefs.GetFloat("CoolTime") > 0f)
+        {
+            coolTime += PlayerPrefs.GetFloat("CoolTime");
+        }
+
         currentLife = DataManager.Instance.GetPlayerData().playerLife;
         lastExitDate = DataManager.Instance.GetPlayerData().LastExitDate;
 
@@ -71,5 +77,9 @@ public class Timer : MonoBehaviour
     {
         return coolTime;
     }
-}
 
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("CoolTime", coolTime);
+    }
+}
