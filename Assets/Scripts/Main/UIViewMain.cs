@@ -11,6 +11,7 @@ public class UIViewMain : UIViewBase
     public override void InitView()
     {
         MainManager.SetMainState(EMainState.MAIN);
+        Timer.InitTimer();
         textPlayerGold.text = DataManager.Instance.GetPlayerData().playerGold.ToString();
     }
 

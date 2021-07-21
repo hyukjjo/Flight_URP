@@ -19,6 +19,8 @@ public class UIViewRewardTime : UIViewBase
 
     private void Update()
     {
-        textRewardTime.text = ((int)(600 - Timer.GetTime()) / 60).ToString() + " : " + ((int)((600 - Timer.GetTime()) % 60)).ToString();
+        string minutes = ((int)(600 - Timer.GetTime()) / 60).ToString("00");
+        string seconds = ((int)((600 - Timer.GetTime()) % 60)).ToString("00");
+        textRewardTime.text = string.Format("{0} : {1}", minutes, seconds);
     }
 }

@@ -3928,8 +3928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f511c7722d3d92b46a3bd128fec6ca74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLife: 0
-  lastExitDate: 
   rewardPeriod: 600
 --- !u!1 &430999975
 GameObject:

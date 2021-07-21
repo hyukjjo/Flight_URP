@@ -8,16 +8,18 @@ public class Timer : MonoBehaviour
 {
     private static float coolTime;
     private static bool isOnCoolTime = false;
-    private int rewardLife;
-    private float remainingTime;
+    private static int rewardLife;
+    private static float remainingTime;
 
-    public int currentLife;
-    public string lastExitDate;
+    private static int currentLife;
+    private static string lastExitDate;
+    private static int _rewardPeriod;
     public int rewardPeriod;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        _rewardPeriod = rewardPeriod;
     }
 
     private void Update()
@@ -38,7 +40,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void Start()
+    public static void InitTimer()
     {
         if (PlayerPrefs.GetFloat("CoolTime") > 0f)
         {
@@ -50,8 +52,8 @@ public class Timer : MonoBehaviour
 
         if (currentLife < 20)
         {
-            rewardLife = (int)(((DateTime.Now - Convert.ToDateTime(lastExitDate)).TotalSeconds) / 600);
-            remainingTime = (int)((DateTime.Now - Convert.ToDateTime(lastExitDate)).TotalSeconds % 600);
+            rewardLife = (int)(((DateTime.Now - Convert.ToDateTime(lastExitDate)).TotalSeconds) / _rewardPeriod);
+            remainingTime = (int)((DateTime.Now - Convert.ToDateTime(lastExitDate)).TotalSeconds % _rewardPeriod);
             coolTime += remainingTime;
             currentLife += rewardLife;
 

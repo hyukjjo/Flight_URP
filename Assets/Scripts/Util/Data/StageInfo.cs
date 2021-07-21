@@ -21,6 +21,7 @@ public class StageInfo : MonoBehaviour
     public static StageInfo Instance
     {
         get
+     
         {
             if(instance == null)
             {
