@@ -8438,8 +8438,9 @@ GameObject:
   - component: {fileID: 904307279}
   - component: {fileID: 904307281}
   - component: {fileID: 904307280}
+  - component: {fileID: 904307282}
   m_Layer: 5
-  m_Name: Panel_Gold
+  m_Name: UIViewMainGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8504,6 +8505,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904307278}
   m_CullTransparentMesh: 1
+--- !u!114 &904307282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904307278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ef57408696f7740a7067aaebf50979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPlayerGold: {fileID: 1573428144}
 --- !u!1 &904362175
 GameObject:
   m_ObjectHideFlags: 0
@@ -8515,8 +8529,9 @@ GameObject:
   - component: {fileID: 904362176}
   - component: {fileID: 904362178}
   - component: {fileID: 904362177}
+  - component: {fileID: 904362179}
   m_Layer: 5
-  m_Name: Panel_Gold
+  m_Name: UIViewMissionGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8581,6 +8596,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904362175}
   m_CullTransparentMesh: 1
+--- !u!114 &904362179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904362175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ef57408696f7740a7067aaebf50979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPlayerGold: {fileID: 1946992382}
 --- !u!1 &921652278
 GameObject:
   m_ObjectHideFlags: 0
@@ -9672,8 +9700,9 @@ GameObject:
   - component: {fileID: 1060036613}
   - component: {fileID: 1060036615}
   - component: {fileID: 1060036614}
+  - component: {fileID: 1060036616}
   m_Layer: 5
-  m_Name: Panel_Gold
+  m_Name: UIViewShopGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9738,6 +9767,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060036612}
   m_CullTransparentMesh: 1
+--- !u!114 &1060036616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060036612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ef57408696f7740a7067aaebf50979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPlayerGold: {fileID: 1132556167}
 --- !u!1 &1065072857
 GameObject:
   m_ObjectHideFlags: 0
@@ -11772,8 +11814,9 @@ GameObject:
   - component: {fileID: 1341193284}
   - component: {fileID: 1341193286}
   - component: {fileID: 1341193285}
+  - component: {fileID: 1341193287}
   m_Layer: 5
-  m_Name: Panel_Life
+  m_Name: UIViewMissionLife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11838,6 +11881,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341193283}
   m_CullTransparentMesh: 1
+--- !u!114 &1341193287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341193283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9af22d1f6384045ac793c408d4ac46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textLife: {fileID: 742626853}
 --- !u!1 &1345667664
 GameObject:
   m_ObjectHideFlags: 0
@@ -11851,7 +11907,7 @@ GameObject:
   - component: {fileID: 1345667666}
   - component: {fileID: 1345667668}
   m_Layer: 5
-  m_Name: UIViewLife
+  m_Name: UIViewMainLife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
