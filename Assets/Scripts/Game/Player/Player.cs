@@ -79,9 +79,6 @@ public class Player : Figure
             if (Input.GetMouseButtonDown(0))
             {
                 corMove = StartCoroutine(MovePlayer(InputPosition));
-
-                // 리셋? 불필요한 코드(redundant code)
-                touchPos = Vector2.zero;
             }
             // 모바일 일 때
 #elif UNITY_IOS || UNITY_ANDROID
