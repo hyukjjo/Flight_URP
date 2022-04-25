@@ -23,6 +23,7 @@ public class Player : Figure
     private float oddX = 0f;
     private float evenX = -0.75f;
     private float offset = 1.5f;
+    public IPlayerInput PlayerInput { get; set; }
 
     void Start()
     {
