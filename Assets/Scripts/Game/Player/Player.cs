@@ -64,28 +64,56 @@ public class Player : Figure
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
 
+    // 3.1 기이한 이름(Mysterious Name)
+    // G20: 이름과 기능이 일치하는 함수
+    // 3.3 긴 함수(Long Function)
+    // G30: 함수는 한 가지만 해야 한다.
+    // N1: 서술적인 이름을 사용하라
+    // N4: 명확한 이름
+    // 인풋 값을 조회해서 그 값으로 왼쪽부 터치인지 오른쪽부 터치인지 판단 후 플레이어 포지션에 반영함
     public void Touch()
     {
         if (isTouchable)
         {
+            // 에디터 일 때
 #if UNITY_EDITOR
+            // 클릭 하면
             if (Input.GetMouseButtonDown(0))
             {
+                // N3: 가능하다면 표준 명명법을 사용하라
+                // 마우스 포지션을 조회해서 touchPos에 캐싱함
                 touchPos = Input.mousePosition;
+                // G16: 모호한 의도(매직 번호)
+                // G25: 매직 숫자는 명명된 상수로 교체하라
+                // Mathf.Sign(touchPos.x - screenCenterX) = +1 또는 -1 = 매직 넘버
+                // 이 매직 넘버에 의존하는 MovePlayer함수에게 해당 값을 매개변수를 통해 주입해줌.
                 corMove = StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
 
+                // 리셋? 불필요한 코드(redundant code)
                 touchPos = Vector2.zero;
             }
+            // 모바일 일 때
 #elif UNITY_IOS || UNITY_ANDROID
+            // 터치 하면
             if (Input.touchCount > 0)
             {
+                // 터치를 조회해서 touch에 캐싱함
                 Touch touch = Input.GetTouch(0);
 
+                // G28: 조건을 캡슐화하라
+                // 손가락이 Down인지 체크
                 if(touch.phase == TouchPhase.Began)
                 {
+                    // N4: 명확한 이름
+                    // 터치의 좌표를 조회해서 캐싱함
                     startSwipePos = touch.position;
+                    // G16: 모호한 의도(매직 번호)
+                    // G25: 매직 숫자는 명명된 상수로 교체하라
+                    // Mathf.Sign(touchPos.x - screenCenterX) = +1 또는 -1 = 매직 넘버
+                    // 이 매직 넘버에 의존하는 MovePlayer함수에게 해당 값을 매개변수를 통해 주입해줌.
                     corMove = StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
 
+                    // 리셋? 불필요한 코드(redundant code)
                     touchPos = Vector2.zero;
                 }
             }
