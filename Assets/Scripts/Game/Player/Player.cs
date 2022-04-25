@@ -37,7 +37,7 @@ public class Player : Figure
         float input = PlayerInput.GetInput();
         var movement = transform.position.x + input * Time.deltaTime;
         transform.localPosition = new Vector3(movement, 0f, 0f);
-        Touch();
+        GetInputAndCheckInputPositionAndMovePlayer();
         //Swipe();
     }
 
@@ -63,15 +63,9 @@ public class Player : Figure
 
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
-
-    // 3.1 기이한 이름(Mysterious Name)
-    // G20: 이름과 기능이 일치하는 함수
-    // 3.3 긴 함수(Long Function)
-    // G30: 함수는 한 가지만 해야 한다.
-    // N1: 서술적인 이름을 사용하라
-    // N4: 명확한 이름
+    
     // 인풋 값을 조회해서 그 값으로 왼쪽부 터치인지 오른쪽부 터치인지 판단 후 플레이어 포지션에 반영함
-    public void Touch()
+    public void GetInputAndCheckInputPositionAndMovePlayer()
     {
         if (isTouchable)
         {
@@ -98,7 +92,7 @@ public class Player : Figure
             if (Input.touchCount > 0)
             {
                 // 터치를 조회해서 touch에 캐싱함
-                Touch touch = Input.GetTouch(0);
+                GetInputAndCheckInputPositionAndMovePlayer touch = Input.GetTouch(0);
 
                 // G28: 조건을 캡슐화하라
                 // 손가락이 Down인지 체크
@@ -141,7 +135,7 @@ public class Player : Figure
 #elif UNITY_IOS || UNITY_ANDROID
             if (Input.touchCount > 0)
             {
-                Touch touch = Input.GetTouch(0);
+                GetInputAndCheckInputPositionAndMovePlayer touch = Input.GetTouch(0);
 
                 if (touch.phase == TouchPhase.Began)
                 {
