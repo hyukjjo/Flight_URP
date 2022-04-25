@@ -73,20 +73,17 @@ public class Player : Figure
     {
         if (isTouchable)
         {
-            // 에디터 일 때
 #if UNITY_EDITOR
-            // 클릭 하면
             if (Input.GetMouseButtonDown(0))
             {
                 corMove = StartCoroutine(MovePlayer(InputPosition));
             }
-            // 모바일 일 때
 #elif UNITY_IOS || UNITY_ANDROID
             // 터치 하면
             if (Input.touchCount > 0)
             {
                 // 터치를 조회해서 touch에 캐싱함
-                GetInputAndCheckInputPositionAndMovePlayer touch = Input.GetTouch(0);
+                Touch touch = Input.GetTouch(0);
 
                 // G28: 조건을 캡슐화하라
                 // 손가락이 Down인지 체크
@@ -129,7 +126,7 @@ public class Player : Figure
 #elif UNITY_IOS || UNITY_ANDROID
             if (Input.touchCount > 0)
             {
-                GetInputAndCheckInputPositionAndMovePlayer touch = Input.GetTouch(0);
+                Touch touch = Input.GetTouch(0);
 
                 if (touch.phase == TouchPhase.Began)
                 {
