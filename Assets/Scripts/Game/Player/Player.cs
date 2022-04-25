@@ -74,14 +74,11 @@ public class Player : Figure
             // 클릭 하면
             if (Input.GetMouseButtonDown(0))
             {
-                // N3: 가능하다면 표준 명명법을 사용하라
-                // 마우스 포지션을 조회해서 touchPos에 캐싱함
-                touchPos = Input.mousePosition;
                 // G16: 모호한 의도(매직 번호)
                 // G25: 매직 숫자는 명명된 상수로 교체하라
                 // Mathf.Sign(touchPos.x - screenCenterX) = +1 또는 -1 = 매직 넘버
                 // 이 매직 넘버에 의존하는 MovePlayer함수에게 해당 값을 매개변수를 통해 주입해줌.
-                corMove = StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
+                corMove = StartCoroutine(MovePlayer(Mathf.Sign(Input.mousePosition.x - screenCenterX)));
 
                 // 리셋? 불필요한 코드(redundant code)
                 touchPos = Vector2.zero;
