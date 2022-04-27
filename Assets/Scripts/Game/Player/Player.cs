@@ -24,8 +24,6 @@ public class Player : Figure
     private float evenX = -0.75f;
     private float offset = 1.5f;
     public IPlayerInput PlayerInput { get; set; }
-
-    private float InputPosition => Input.mousePosition.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
     private const float LEFT_SIDE = -1.0f;
     private const float RIGHT_SIDE = 1.0f;
 
@@ -76,7 +74,7 @@ public class Player : Figure
 #if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
-                corMove = StartCoroutine(MovePlayer(InputPosition));
+                corMove = StartCoroutine(MovePlayer(CheckInputPosition()));
             }
 #elif UNITY_IOS || UNITY_ANDROID
             // 터치 하면
@@ -92,11 +90,7 @@ public class Player : Figure
                     // N4: 명확한 이름
                     // 터치의 좌표를 조회해서 캐싱함
                     startSwipePos = touch.position;
-                    // G16: 모호한 의도(매직 번호)
-                    // G25: 매직 숫자는 명명된 상수로 교체하라
-                    // Mathf.Sign(touchPos.x - screenCenterX) = +1 또는 -1 = 매직 넘버
-                    // 이 매직 넘버에 의존하는 MovePlayer함수에게 해당 값을 매개변수를 통해 주입해줌.
-                    corMove = StartCoroutine(MovePlayer(Mathf.Sign(touchPos.x - screenCenterX)));
+                    corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
 
                     // 리셋? 불필요한 코드(redundant code)
                     touchPos = Vector2.zero;
@@ -105,6 +99,10 @@ public class Player : Figure
 #endif
         }
     }
+
+    private float CheckInputPosition() => Input.mousePosition.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+
+    private float CheckInputPosition(Touch touch) => touch.position.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     public void Swipe()
     {
