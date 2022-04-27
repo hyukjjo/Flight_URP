@@ -77,16 +77,12 @@ public class Player : Figure
                 corMove = StartCoroutine(MovePlayer(CheckInputPosition()));
             }
 #elif UNITY_IOS || UNITY_ANDROID
-            // 10. 조건부 로직 간소화
-            // 함수 - 작게 만들어라! - 블록과 들여쓰기, 클린코드 44p
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
+            if (Input.touchCount <= 0) return;
+            Touch touch = Input.GetTouch(0);
                 
-                if(IsTouchDown(touch))
-                {
-                    corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
-                }
+            if(IsTouchDown(touch))
+            {
+                corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
             }
 #endif
         }
