@@ -71,11 +71,15 @@ public class Player : Figure
     {
         if (!isTouchable) return;
 #if UNITY_EDITOR
+        // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
+        // GetInput과 동일한 추상화 수준으로 바꿔보자.
         if (Input.GetMouseButtonDown(0))
         {
             corMove = StartCoroutine(MovePlayer(CheckInputPosition(Input.mousePosition.x)));
         }
 #elif UNITY_IOS || UNITY_ANDROID
+        // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
+        // GetInput과 동일한 추상화 수준으로 바꿔보자.
         if (Input.touchCount <= 0) return;
         Touch touch = Input.GetTouch(0);
                 
