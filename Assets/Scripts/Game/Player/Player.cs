@@ -48,16 +48,15 @@ public class Player : Figure
 #elif UNITY_IOS || UNITY_ANDROID
         _tryGetInputAndGetInputPositionXFunc = (out float touchPosition) =>
         {
-            // 코드 구문 축약 가능
             touchPosition = 0f;
-            if (Input.touchCount <= 0) return false;
-            var touch = Input.GetTouch(0);
-            if (!IsTouchDown(touch)) return false;
-            touchPosition = touch.position.x;
+            if (!HasValidTouch()) return false;
+            touchPosition = Input.GetTouch(0).position.x;
             return true;
         };
 #endif
     }
+
+    private bool HasValidTouch() => Input.touchCount > 0 && !IsTouchDown(Input.GetTouch(0));
 
     void Update()
     {
