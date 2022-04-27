@@ -82,6 +82,8 @@ public class Player : Figure
 #endif
     }
 
+    // G5: 중복
+    // 매서드 시그니쳐를 float으로 변경하면 중복
     private bool TryGetInput(out Vector3 mousePosition)
     {
         mousePosition = new Vector3();
@@ -90,6 +92,8 @@ public class Player : Figure
         return true;
     }
 
+    // G5: 중복
+    // 매서드 시그니쳐를 float으로 변경하면 중복
     private bool TryGetInput(out Touch touch)
     {
         touch = new Touch();
