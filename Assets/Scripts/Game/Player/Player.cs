@@ -9,6 +9,7 @@ public class Player : Figure
     //public bool isMoving = false;
 
     private Vector2 touchPos = Vector2.zero;
+    // 응집도 낮음 - "몇몇 메서드만이 사용하는 인스턴스 변수", 클린코드 177p
     private float screenCenterX = Screen.width * 0.5f;
     private Vector2 startSwipePos = Vector2.zero;
     private Vector2 endSwipePos = Vector2.zero;
@@ -27,12 +28,14 @@ public class Player : Figure
     private const float LEFT_SIDE = -1.0f;
     private const float RIGHT_SIDE = 1.0f;
 
+    // 응집도 낮음 - "몇몇 메서드만이 사용하는 인스턴스 변수", 클린코드 177p
     private delegate TV TryFunc<T, out TV>(out T output);
     private TryFunc<float, bool> _tryGetInputAndGetInputPositionXFunc;
 
     void Start()
     {
 
+        // SRP 위반 - "클래스를 변경할 이유가 하나 뿐이어야 한다", 클린코드 175p
 #if UNITY_EDITOR
         _tryGetInputAndGetInputPositionXFunc = (out float inputPosition) =>
         {
