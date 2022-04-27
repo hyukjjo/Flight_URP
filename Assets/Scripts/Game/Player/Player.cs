@@ -96,6 +96,7 @@ public class Player : Figure
         corMove = StartCoroutine(MovePlayer(CheckInputPosition(inputPositionX)));
     }
 
+    // N4: 명확한 이름
     private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     private bool IsTouchDown(Touch touch) => touch.phase == TouchPhase.Began;
