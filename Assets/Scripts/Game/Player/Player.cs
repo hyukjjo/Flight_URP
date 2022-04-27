@@ -69,25 +69,21 @@ public class Player : Figure
     // 인풋 값을 조회해서 그 값으로 왼쪽부 터치인지 오른쪽부 터치인지 판단 후 플레이어 포지션에 반영함
     public void GetInputAndCheckInputPositionAndMovePlayer()
     {
-        // 10. 조건부 로직 간소화
-        // 함수 - 작게 만들어라! - 블록과 들여쓰기, 클린코드 44p
-        if (isTouchable)
-        {
+        if (!isTouchable) return;
 #if UNITY_EDITOR
-            if (Input.GetMouseButtonDown(0))
-            {
-                corMove = StartCoroutine(MovePlayer(CheckInputPosition(Input.mousePosition.x)));
-            }
-#elif UNITY_IOS || UNITY_ANDROID
-            if (Input.touchCount <= 0) return;
-            Touch touch = Input.GetTouch(0);
-                
-            if(IsTouchDown(touch))
-            {
-                corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch.position.x)));
-            }
-#endif
+        if (Input.GetMouseButtonDown(0))
+        {
+            corMove = StartCoroutine(MovePlayer(CheckInputPosition(Input.mousePosition.x)));
         }
+#elif UNITY_IOS || UNITY_ANDROID
+        if (Input.touchCount <= 0) return;
+        Touch touch = Input.GetTouch(0);
+                
+        if(IsTouchDown(touch))
+        {
+            corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch.position.x)));
+        }
+#endif
     }
     private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
