@@ -77,17 +77,12 @@ public class Player : Figure
                 corMove = StartCoroutine(MovePlayer(CheckInputPosition()));
             }
 #elif UNITY_IOS || UNITY_ANDROID
-            // 터치 하면
             if (Input.touchCount > 0)
             {
-                // 터치를 조회해서 touch에 캐싱함
                 Touch touch = Input.GetTouch(0);
                 
                 if(IsTouchDown(touch))
                 {
-                    // N4: 명확한 이름
-                    // 터치의 좌표를 조회해서 캐싱함
-                    startSwipePos = touch.position;
                     corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
                 }
             }
