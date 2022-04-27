@@ -28,14 +28,13 @@ public class Player : Figure
     private const float RIGHT_SIDE = 1.0f;
 
     private delegate TV TryFunc<T, out TV>(out T output);
-    private TryFunc<float, bool> _tryGetInputFunc;
+    private TryFunc<float, bool> _tryGetInputAndGetInputPositionXFunc;
 
     void Start()
     {
 
 #if UNITY_EDITOR
-        // N4: 명확한 이름
-        _tryGetInputFunc = (out float inputPosition) =>
+        _tryGetInputAndGetInputPositionXFunc = (out float inputPosition) =>
         {
             inputPosition = 0f;
             if (Input.GetMouseButtonDown(0)) return false;
@@ -44,8 +43,7 @@ public class Player : Figure
         };
 
 #elif UNITY_IOS || UNITY_ANDROID
-        // N4: 명확한 이름
-        _tryGetInputFunc = (out float touchPosition) =>
+        _tryGetInputAndGetInputPositionXFunc = (out float touchPosition) =>
         {
             touchPosition = 0f;
             if (Input.touchCount <= 0) return false;
@@ -95,7 +93,7 @@ public class Player : Figure
     public void GetInputAndCheckInputPositionAndMovePlayer()
     {
         if (!isTouchable) return;
-        if (_tryGetInputFunc(out float inputPositionX)) return;
+        if (_tryGetInputAndGetInputPositionXFunc(out float inputPositionX)) return;
         corMove = StartCoroutine(MovePlayer(CheckInputPosition(inputPositionX)));
     }
 
