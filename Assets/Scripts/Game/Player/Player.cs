@@ -71,24 +71,33 @@ public class Player : Figure
     {
         if (!isTouchable) return;
 #if UNITY_EDITOR
-        // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
-        // GetInput과 동일한 추상화 수준으로 바꿔보자.
-        if (Input.GetMouseButtonDown(0))
-        {
-            corMove = StartCoroutine(MovePlayer(CheckInputPosition(Input.mousePosition.x)));
-        }
+        if (TryGetInput(out Vector3 mousePosition)) return;
+        corMove = StartCoroutine(MovePlayer(CheckInputPosition(mousePosition.x)));
 #elif UNITY_IOS || UNITY_ANDROID
-        // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
-        // GetInput과 동일한 추상화 수준으로 바꿔보자.
-        if (Input.touchCount <= 0) return;
-        Touch touch = Input.GetTouch(0);
-                
+        if (TryGetInput(out Touch touch)) return;
         if(IsTouchDown(touch))
         {
             corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch.position.x)));
         }
 #endif
     }
+
+    private bool TryGetInput(out Vector3 mousePosition)
+    {
+        mousePosition = new Vector3();
+        if (Input.GetMouseButtonDown(0)) return false;
+        mousePosition = Input.mousePosition;
+        return true;
+    }
+
+    private bool TryGetInput(out Touch touch)
+    {
+        touch = new Touch();
+        if (Input.touchCount <= 0) return false;
+        touch = Input.GetTouch(0);
+        return true;
+    }
+
     private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     private bool IsTouchDown(Touch touch) => touch.phase == TouchPhase.Began;
