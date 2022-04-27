@@ -76,7 +76,7 @@ public class Player : Figure
 #if UNITY_EDITOR
             if (Input.GetMouseButtonDown(0))
             {
-                corMove = StartCoroutine(MovePlayer(CheckInputPosition()));
+                corMove = StartCoroutine(MovePlayer(CheckInputPosition(Input.mousePosition.x)));
             }
 #elif UNITY_IOS || UNITY_ANDROID
             if (Input.touchCount <= 0) return;
@@ -84,15 +84,12 @@ public class Player : Figure
                 
             if(IsTouchDown(touch))
             {
-                corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
+                corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch.position.x)));
             }
 #endif
         }
     }
-    // G5: 중복
-    private float CheckInputPosition() => Input.mousePosition.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
-    // G5: 중복
-    private float CheckInputPosition(Touch touch) => touch.position.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+    private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     private bool IsTouchDown(Touch touch) => touch.phase == TouchPhase.Began;
 
