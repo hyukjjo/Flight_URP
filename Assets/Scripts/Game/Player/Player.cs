@@ -82,10 +82,8 @@ public class Player : Figure
             {
                 // 터치를 조회해서 touch에 캐싱함
                 Touch touch = Input.GetTouch(0);
-
-                // G28: 조건을 캡슐화하라
-                // 손가락이 Down인지 체크
-                if(touch.phase == TouchPhase.Began)
+                
+                if(IsTouchDown(touch))
                 {
                     // N4: 명확한 이름
                     // 터치의 좌표를 조회해서 캐싱함
@@ -103,6 +101,8 @@ public class Player : Figure
     private float CheckInputPosition() => Input.mousePosition.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     private float CheckInputPosition(Touch touch) => touch.position.x - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+
+    private bool IsTouchDown(Touch touch) => touch.phase == TouchPhase.Began;
 
     public void Swipe()
     {
