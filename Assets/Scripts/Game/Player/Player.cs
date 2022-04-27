@@ -95,12 +95,8 @@ public class Player : Figure
     public void GetInputAndCheckInputPositionAndMovePlayer()
     {
         if (!isTouchable) return;
-        // G5: 중복
-        if (_tryGetInputFunc(out float mousePosition)) return;
-        corMove = StartCoroutine(MovePlayer(CheckInputPosition(mousePosition)));
-        // G5: 중복
-        if (_tryGetInputFunc(out float touch)) return;
-        corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
+        if (_tryGetInputFunc(out float inputPositionX)) return;
+        corMove = StartCoroutine(MovePlayer(CheckInputPosition(inputPositionX)));
     }
 
     private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
