@@ -27,9 +27,32 @@ public class Player : Figure
     private const float LEFT_SIDE = -1.0f;
     private const float RIGHT_SIDE = 1.0f;
 
+    private delegate TV TryFunc<T, out TV>(out T output);
+    private TryFunc<float, bool> _tryGetInputFunc;
+
     void Start()
     {
 
+#if UNITY_EDITOR
+        _tryGetInputFunc = (out float inputPosition) =>
+        {
+            inputPosition = 0f;
+            if (Input.GetMouseButtonDown(0)) return false;
+            inputPosition = Input.mousePosition.x;
+            return true;
+        };
+
+#elif UNITY_IOS || UNITY_ANDROID
+        _tryGetInputFunc = (out float touchPosition) =>
+        {
+            touchPosition = 0f;
+            if (Input.touchCount <= 0) return false;
+            var touch = Input.GetTouch(0);
+            if (IsTouchDown(touch)) return false;
+            touchPosition = touch.position.x;
+            return true;
+        };
+#endif
     }
 
     void Update()
@@ -70,36 +93,10 @@ public class Player : Figure
     public void GetInputAndCheckInputPositionAndMovePlayer()
     {
         if (!isTouchable) return;
-#if UNITY_EDITOR
-        if (TryGetInput(out Vector3 mousePosition)) return;
-        corMove = StartCoroutine(MovePlayer(CheckInputPosition(mousePosition.x)));
-#elif UNITY_IOS || UNITY_ANDROID
-        if (TryGetInput(out Touch touch)) return;
-        if(IsTouchDown(touch))
-        {
-            corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch.position.x)));
-        }
-#endif
-    }
-
-    // G5: 중복
-    // 매서드 시그니쳐를 float으로 변경하면 중복
-    private bool TryGetInput(out Vector3 mousePosition)
-    {
-        mousePosition = new Vector3();
-        if (Input.GetMouseButtonDown(0)) return false;
-        mousePosition = Input.mousePosition;
-        return true;
-    }
-
-    // G5: 중복
-    // 매서드 시그니쳐를 float으로 변경하면 중복
-    private bool TryGetInput(out Touch touch)
-    {
-        touch = new Touch();
-        if (Input.touchCount <= 0) return false;
-        touch = Input.GetTouch(0);
-        return true;
+        if (_tryGetInputFunc(out float mousePosition)) return;
+        corMove = StartCoroutine(MovePlayer(CheckInputPosition(mousePosition)));
+        if (_tryGetInputFunc(out float touch)) return;
+        corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
     }
 
     private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
