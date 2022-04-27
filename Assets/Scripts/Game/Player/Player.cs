@@ -89,6 +89,7 @@ public class Player : Figure
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
     
+    // N2: 적절한 추상화 수준에서 이름을 선택하라
     // 인풋 값을 조회해서 그 값으로 왼쪽부 터치인지 오른쪽부 터치인지 판단 후 플레이어 포지션에 반영함
     public void GetInputAndCheckInputPositionAndMovePlayer()
     {
