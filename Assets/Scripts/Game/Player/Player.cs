@@ -62,9 +62,6 @@ public class Player : Figure
     {
         if (Input.GetKeyDown(KeyCode.A))
             Init();
-        float input = PlayerInput.GetInput();
-        var movement = transform.position.x + input * Time.deltaTime;
-        transform.localPosition = new Vector3(movement, 0f, 0f);
         DetectTouchAndMovePlayer();
         //Swipe();
     }
