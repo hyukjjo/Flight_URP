@@ -93,11 +93,10 @@ public class Player : Figure
     {
         if (!isTouchable) return;
         if (_tryGetInputAndGetInputPositionXFunc(out float inputPositionX)) return;
-        corMove = StartCoroutine(MovePlayer(CheckInputPosition(inputPositionX)));
+        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(inputPositionX)));
     }
-
-    // N4: 명확한 이름
-    private float CheckInputPosition(float rawInputPositionX) => rawInputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+    
+    private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     private bool IsTouchDown(Touch touch) => touch.phase == TouchPhase.Began;
 
