@@ -34,6 +34,7 @@ public class Player : Figure
     {
 
 #if UNITY_EDITOR
+        // N4: 명확한 이름
         _tryGetInputFunc = (out float inputPosition) =>
         {
             inputPosition = 0f;
@@ -43,6 +44,7 @@ public class Player : Figure
         };
 
 #elif UNITY_IOS || UNITY_ANDROID
+        // N4: 명확한 이름
         _tryGetInputFunc = (out float touchPosition) =>
         {
             touchPosition = 0f;
@@ -93,8 +95,10 @@ public class Player : Figure
     public void GetInputAndCheckInputPositionAndMovePlayer()
     {
         if (!isTouchable) return;
+        // G5: 중복
         if (_tryGetInputFunc(out float mousePosition)) return;
         corMove = StartCoroutine(MovePlayer(CheckInputPosition(mousePosition)));
+        // G5: 중복
         if (_tryGetInputFunc(out float touch)) return;
         corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
     }
