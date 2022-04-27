@@ -48,7 +48,7 @@ public class Player : Figure
             touchPosition = 0f;
             if (Input.touchCount <= 0) return false;
             var touch = Input.GetTouch(0);
-            if (IsTouchDown(touch)) return false;
+            if (!IsTouchDown(touch)) return false;
             touchPosition = touch.position.x;
             return true;
         };
