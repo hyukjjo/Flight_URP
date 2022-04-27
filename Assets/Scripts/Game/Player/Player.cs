@@ -89,9 +89,6 @@ public class Player : Figure
                     // 터치의 좌표를 조회해서 캐싱함
                     startSwipePos = touch.position;
                     corMove = StartCoroutine(MovePlayer(CheckInputPosition(touch)));
-
-                    // 리셋? 불필요한 코드(redundant code)
-                    touchPos = Vector2.zero;
                 }
             }
 #endif
