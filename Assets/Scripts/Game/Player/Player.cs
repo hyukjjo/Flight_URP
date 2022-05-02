@@ -70,30 +70,24 @@ public class Player : Figure
         if (!isTouchable) return;
 #if UNITY_EDITOR
         startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
-        // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
-        if (Input.GetMouseButtonUp(0))
-        {
-            endSwipePos = Input.mousePosition;
-            diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
-            corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
+        if (!Input.GetMouseButtonUp(0)) return;
+        endSwipePos = Input.mousePosition;
+        diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
+        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
 
-            startSwipePos = Vector2.zero;
-            endSwipePos = Vector2.zero;
-            diffInputDownAndUp = 0f;
-        }
+        startSwipePos = Vector2.zero;
+        endSwipePos = Vector2.zero;
+        diffInputDownAndUp = 0f;
 #elif UNITY_IOS || UNITY_ANDROID
         startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
-        // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
-        if (IsTouchUp(touch))
-        {
-            endSwipePos = touch.position;
-            diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
-            corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
+        if (!IsTouchUp(touch)) return;
+        endSwipePos = touch.position;
+        diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
+        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
 
-            startSwipePos = Vector2.zero;
-            endSwipePos = Vector2.zero;
-            diffInputDownAndUp = 0f;
-        }
+        startSwipePos = Vector2.zero;
+        endSwipePos = Vector2.zero;
+        diffInputDownAndUp = 0f;
 #endif
     }
 
