@@ -15,7 +15,7 @@ public class Player_Movement
         var playerInput = Substitute.For<IPlayerInput>();
         var playerGameObject = new GameObject();
         var player = playerGameObject.AddComponent<Player>();
-        playerInput.GetInputPositionX().Returns(-1f);
+        playerInput.GetInputPositionXDown().Returns(-1f);
         player.PlayerInput = playerInput;
         player.isTouchable = true;  // Stub: 디펜던시 해소
 

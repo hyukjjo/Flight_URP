@@ -16,7 +16,7 @@ public class Player : Figure
     private float swipeX = 0f;
     private float moveTime = 0.1f;
     private Coroutine corMove = null;
-    private Vector2 moveNextPos = Vector2.zero;
+    private Vector2 nextPos = Vector2.zero;
     private List<GameObject> enemys = new List<GameObject>();
 
     public SpriteRenderer facial;
@@ -31,7 +31,7 @@ public class Player : Figure
     {
         if (Input.GetKeyDown(KeyCode.A))
             Init();
-        DetectTouchAndMovePlayer();
+        GetInputPositionXDownAndMovePlayer();
         //Swipe();
     }
 
@@ -58,11 +58,10 @@ public class Player : Figure
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
     
-    // N4: 명확한 이름
-    public void DetectTouchAndMovePlayer()
+    public void GetInputPositionXDownAndMovePlayer()
     {
         if (!isTouchable) return;
-        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(PlayerInput.GetInputPositionX())));
+        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(PlayerInput.GetInputPositionXDown())));
     }
     
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
@@ -111,8 +110,8 @@ public class Player : Figure
     {
         if (corMove != null)
         {
-            transform.position = moveNextPos;
-            moveNextPos = Vector2.zero;
+            transform.position = nextPos;
+            nextPos = Vector2.zero;
             StopAllCoroutines();
             corMove = null;
             corMove = StartCoroutine(MovePlayer(directionX));
@@ -126,12 +125,12 @@ public class Player : Figure
 
         Vector2 startPos = transform.position;
         Vector2 endPos = startPos + new Vector2(directionX * offset, 0f);
-        moveNextPos = endPos;
+        nextPos = endPos;
 
-        if (!CheckNextMove(moveNextPos))
+        if (!CanMoveTo(nextPos))
         {
             corMove = null;
-            moveNextPos = Vector2.zero;
+            nextPos = Vector2.zero;
             yield break;
         }
 
@@ -148,11 +147,10 @@ public class Player : Figure
         transform.position = endPos;
 
         corMove = null;
-        moveNextPos = Vector2.zero;
+        nextPos = Vector2.zero;
     }
 
-    // N4: 명확한 이름
-    private bool CheckNextMove(Vector2 nextPos)
+    private bool CanMoveTo(Vector2 nextPos)
     {
         // Stub: 디펜던시 해소
         return true;

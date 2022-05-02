@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MobileInput : IPlayerInput
 {
-    public float GetInputPositionX()
+    public float GetInputPositionXDown()
     {
         if (!HasValidTouch()) return 0.0f;
         return Input.GetTouch(0).position.x;
