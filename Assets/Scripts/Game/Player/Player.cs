@@ -149,19 +149,20 @@ public class Player : Figure
     private bool CanMoveTo(Vector2 nextPos)
     {
         enemys = GameManager.Instance.enemyManager.enemys;
-        // G28: 조건식 캡슐화
-        if (enemys.Count == 0 && enemys.Count == 0)
-        {
-            return false;
-        }
+        if (IsEnemyEmpty()) return false;
         
-        // G28: 조건식 캡슐화
-        if (enemys.Count > 0 && nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
-        {
-            return false;
-        }
+        if (IsOutsideOfValidArea(nextPos)) return false;
 
         return true;
+    }
+    private bool IsOutsideOfValidArea(Vector2 nextPos)
+    {
+        return enemys[0].transform.position.x > nextPos.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x; ;
+    }
+
+    private bool IsEnemyEmpty()
+    {
+        return enemys.Count <= 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
