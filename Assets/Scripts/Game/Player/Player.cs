@@ -152,20 +152,15 @@ public class Player : Figure
         return true;
         bool move = true;
 
-        // 10.2 조건부 로직 간소화 - 조건식 통합하기
-        if (enemys.Count == 0)
+        enemys = GameManager.Instance.enemyManager.enemys;
+        if (enemys.Count == 0 && enemys.Count == 0)
         {
-            enemys = GameManager.Instance.enemyManager.enemys;
-
-            if (enemys.Count == 0)
-                move = false;
+            move = false;
         }
-
-        // 10.2 조건부 로직 간소화 - 조건식 통합하기
-        if (enemys.Count > 0)
+        
+        if (enemys.Count > 0 && nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
         {
-            if (nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
-                move = false;
+            move = false;
         }
 
         return move;
