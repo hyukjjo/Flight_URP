@@ -13,7 +13,7 @@ public class Player : Figure
     private float screenCenterX = Screen.width * 0.5f;
     private Vector2 startSwipePos = Vector2.zero;
     private Vector2 endSwipePos = Vector2.zero;
-    private float swipeX = 0f;
+    private float diffInputDownAndUp = 0f;
     private float moveTime = 0.1f;
     private Coroutine corMove = null;
     private Vector2 nextPos = Vector2.zero;
@@ -76,13 +76,12 @@ public class Player : Figure
         else if (Input.GetMouseButtonUp(0))
         {
             endSwipePos = Input.mousePosition;
-            // N4: 명확한 이름
-            swipeX = endSwipePos.x - startSwipePos.x;
-            corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
+            diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
+            corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
 
             startSwipePos = Vector2.zero;
             endSwipePos = Vector2.zero;
-            swipeX = 0f;
+            diffInputDownAndUp = 0f;
         }
 #elif UNITY_IOS || UNITY_ANDROID
         // G5: 중복
@@ -97,16 +96,17 @@ public class Player : Figure
         else if (IsTouchUp(touch))
         {
             endSwipePos = touch.position;
-            // N4: 명확한 이름
-            swipeX = endSwipePos.x - startSwipePos.x;
-            corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
+            diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
+            corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
 
             startSwipePos = Vector2.zero;
             endSwipePos = Vector2.zero;
-            swipeX = 0f;
+            diffInputDownAndUp = 0f;
         }
 #endif
     }
+
+    private float CheckSwipeLeftOrRight() => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
 
     private bool IsTouchUp(Touch touch)
     {
