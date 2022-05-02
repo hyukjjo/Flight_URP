@@ -58,6 +58,7 @@ public class Player : Figure
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
     
+    // N4: 명확한 이름
     public void DetectTouchAndMovePlayer()
     {
         if (!isTouchable) return;
@@ -150,6 +151,7 @@ public class Player : Figure
         moveNextPos = Vector2.zero;
     }
 
+    // N4: 명확한 이름
     private bool CheckNextMove(Vector2 nextPos)
     {
         // Stub: 디펜던시 해소
