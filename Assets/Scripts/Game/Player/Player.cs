@@ -94,8 +94,7 @@ public class Player : Figure
         {
             startSwipePos = touch.position;
         }
-        // G28: 조건식 캡슐화
-        else if (touch.phase == TouchPhase.Ended)
+        else if (IsTouchUp(touch))
         {
             endSwipePos = touch.position;
             // N4: 명확한 이름
@@ -107,6 +106,11 @@ public class Player : Figure
             swipeX = 0f;
         }
 #endif
+    }
+
+    private bool IsTouchUp(Touch touch)
+    {
+        return touch.phase == TouchPhase.Ended;
     }
 
     private IEnumerator MovePlayer(float directionX)
