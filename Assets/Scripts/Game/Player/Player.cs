@@ -31,7 +31,7 @@ public class Player : Figure
     {
         if (Input.GetKeyDown(KeyCode.A))
             Init();
-        GetInputPositionXDownAndMovePlayer();
+        Move();
         //Swipe();
     }
 
@@ -58,13 +58,7 @@ public class Player : Figure
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
     
-    // 11.1 질의(Query) 함수와 변경(Modifier) 함수 분리하기
-    // 변경 함수 내에서 질의 함수는 부수 효과가 아니다.
-    // 따라서 함수명으로 명시할 의무가 없다.
-    // cf. 이미 질의 함수는 IPlayerInput에 분리되었다.
-    // 의미 있는 이름 - 불필요한 맥락 37p
-    // Move라는 의도에는 Input을 참조할 것임이 명확하므로 불필요하다.
-    public void GetInputPositionXDownAndMovePlayer()
+    public void Move()
     {
         if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(PlayerInput.GetInputPositionXDown())));
