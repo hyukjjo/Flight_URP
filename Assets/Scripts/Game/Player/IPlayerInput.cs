@@ -1,4 +1,4 @@
 public interface IPlayerInput
 {
-    float GetInput();
+    public float GetInputPositionX();
 }
