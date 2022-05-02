@@ -11,12 +11,3 @@ public class Player_Movement
         Assert.IsTrue(playerInput != null);
     }
 }
-
-// Stub
-public class InputFactory
-{
-    public static IPlayerInput GetPlayerInput()
-    {
-        return null;
-    }
-}
