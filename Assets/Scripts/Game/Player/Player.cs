@@ -80,13 +80,7 @@ public class Player : Figure
     {
         if (HasBeingMoved())
         {
-            // 불필요한 코드(Redundant Code)
-            transform.position = nextPos;
-            // 불필요한 코드(Redundant Code)
-            nextPos = Vector2.zero;
             StopAllCoroutines();
-            // 불필요한 코드(Redundant Code)
-            corMove = null;
             corMove = StartCoroutine(MovePlayer(directionX));
             yield break;
         }
@@ -133,15 +127,13 @@ public class Player : Figure
         if (IsEnemyEmpty()) return false;
         return !IsOutsideOfValidArea(nextPos);
     }
-    private bool IsOutsideOfValidArea(Vector2 nextPos)
-    {
-        return enemys[0].transform.position.x > nextPos.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x; ;
-    }
+    private bool IsOutsideOfValidArea(Vector2 nextPos) => IsGoThroughLeftFence(nextPos) || IsGoThroughRightFence(nextPos);
 
-    private bool IsEnemyEmpty()
-    {
-        return enemys.Count <= 0;
-    }
+    private bool IsGoThroughRightFence(Vector2 nextPos) => nextPos.x > enemys[enemys.Count - 1].transform.position.x;
+
+    private bool IsGoThroughLeftFence(Vector2 nextPos) => enemys[0].transform.position.x > nextPos.x;
+
+    private bool IsEnemyEmpty() => enemys.Count <= 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
