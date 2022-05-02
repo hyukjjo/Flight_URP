@@ -92,8 +92,9 @@ public class Player : Figure
     public void DetectTouchAndMovePlayer()
     {
         if (!isTouchable) return;
-        if (_tryGetInputAndGetInputPositionXFunc(out float inputPositionX)) return;
-        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(inputPositionX)));
+        // Stub: 테스트 타겟, 설계 반영
+        //if (_tryGetInputAndGetInputPositionXFunc(out float inputPositionX)) return;
+        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(PlayerInput.GetInputPositionX())));
     }
     
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
@@ -187,6 +188,8 @@ public class Player : Figure
 
     private bool CheckNextMove(Vector2 nextPos)
     {
+        // Stub: 디펜던시 해소
+        return true;
         bool move = true;
 
         if (enemys.Count == 0)

@@ -17,6 +17,7 @@ public class Player_Movement
         var player = playerGameObject.AddComponent<Player>();
         playerInput.GetInputPositionX().Returns(-1f);
         player.PlayerInput = playerInput;
+        player.isTouchable = true;  // Stub: 디펜던시 해소
 
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cube.transform.SetParent(playerGameObject.transform);
