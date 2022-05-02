@@ -78,6 +78,7 @@ public class Player : Figure
     // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
     private IEnumerator MovePlayer(float directionX)
     {
+        // G28: 조건식 캡슐화
         if (corMove != null)
         {
             transform.position = nextPos;
@@ -106,6 +107,7 @@ public class Player : Figure
 
         yield return null;
 
+        // G28: 조건식 캡슐화
         while (timer < moveTime)
         {
             timer += Time.deltaTime;
