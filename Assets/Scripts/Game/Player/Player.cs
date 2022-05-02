@@ -69,11 +69,8 @@ public class Player : Figure
     {
         if (!isTouchable) return;
 #if UNITY_EDITOR
-        // G5: 중복
-        // 분리된 질의 구문(PlayerInput)으로 대체 가능
-        if (Input.GetMouseButtonDown(0))
-            startSwipePos = Input.mousePosition;
-        else if (Input.GetMouseButtonUp(0))
+        startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
+        if (Input.GetMouseButtonUp(0))
         {
             endSwipePos = Input.mousePosition;
             diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
@@ -84,16 +81,8 @@ public class Player : Figure
             diffInputDownAndUp = 0f;
         }
 #elif UNITY_IOS || UNITY_ANDROID
-        // G5: 중복
-        // 분리된 질의 구문(PlayerInput)으로 대체 가능
-        if (Input.touchCount <= 0) return;
-        Touch touch = Input.GetTouch(0);
-
-        if (touch.phase == TouchPhase.Began)
-        {
-            startSwipePos = touch.position;
-        }
-        else if (IsTouchUp(touch))
+        startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
+        if (IsTouchUp(touch))
         {
             endSwipePos = touch.position;
             diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
