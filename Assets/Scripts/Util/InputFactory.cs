@@ -9,22 +9,3 @@ public class InputFactory
 #endif
     }
 }
-
-
-// Stub
-public class MouseInput: IPlayerInput
-{
-    public float GetInputPositionX()
-    {
-        throw new System.NotImplementedException();
-    }
-}
-
-// Stub
-public class MobileInput : IPlayerInput
-{
-    public float GetInputPositionX()
-    {
-        throw new System.NotImplementedException();
-    }
-}

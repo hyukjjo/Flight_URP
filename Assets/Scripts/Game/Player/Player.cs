@@ -27,37 +27,6 @@ public class Player : Figure
     public IPlayerInput PlayerInput { get; set; }
     private const float LEFT_SIDE = -1.0f;
     private const float RIGHT_SIDE = 1.0f;
-
-    // 응집도 낮음 - "몇몇 메서드만이 사용하는 인스턴스 변수", 클린코드 177p
-    private delegate TV TryFunc<T, out TV>(out T output);
-    private TryFunc<float, bool> _tryGetInputAndGetInputPositionXFunc;
-
-    void Start()
-    {
-
-        // SRP 위반 - "클래스를 변경할 이유가 하나 뿐이어야 한다", 클린코드 175p
-#if UNITY_EDITOR
-        _tryGetInputAndGetInputPositionXFunc = (out float inputPosition) =>
-        {
-            inputPosition = 0f;
-            if (Input.GetMouseButtonDown(0)) return false;
-            inputPosition = Input.mousePosition.x;
-            return true;
-        };
-
-#elif UNITY_IOS || UNITY_ANDROID
-        _tryGetInputAndGetInputPositionXFunc = (out float touchPosition) =>
-        {
-            touchPosition = 0f;
-            if (!HasValidTouch()) return false;
-            touchPosition = Input.GetTouch(0).position.x;
-            return true;
-        };
-#endif
-    }
-
-    private bool HasValidTouch() => Input.touchCount > 0 && !IsTouchDown(Input.GetTouch(0));
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -92,15 +61,10 @@ public class Player : Figure
     public void DetectTouchAndMovePlayer()
     {
         if (!isTouchable) return;
-        // Stub: 테스트 타겟, 설계 반영
-        //if (_tryGetInputAndGetInputPositionXFunc(out float inputPositionX)) return;
         corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(PlayerInput.GetInputPositionX())));
     }
     
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
-
-    private bool IsTouchDown(Touch touch) => touch.phase == TouchPhase.Began;
-
     public void Swipe()
     {
         if (isTouchable)
