@@ -21,6 +21,7 @@ public class Player : Figure
     private float oddX = 0f;
     private float evenX = -0.75f;
     private float offset = 1.5f;
+    // 응집도 낮음 - "몇몇 메서드만이 사용하는 인스턴스 변수", 클린코드 177p
     private float _prevInputDownX;
     public IPlayerInput PlayerInput { get; set; }
     private const float LEFT_SIDE = -1.0f;
@@ -59,6 +60,7 @@ public class Player : Figure
 
     public void MoveByTouch()
     {
+        // G5: 중복
         if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckTouchLeftOrRight(_prevInputDownX)));
     }
@@ -67,6 +69,7 @@ public class Player : Figure
 
     public void MoveBySwipe()
     {
+        // G5: 중복
         if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
     }
