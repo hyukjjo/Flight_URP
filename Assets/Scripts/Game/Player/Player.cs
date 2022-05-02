@@ -69,11 +69,14 @@ public class Player : Figure
     {
         if (!isTouchable) return;
 #if UNITY_EDITOR
+        // G5: 중복
+        // 분리된 질의 구문(PlayerInput)으로 대체 가능
         if (Input.GetMouseButtonDown(0))
             startSwipePos = Input.mousePosition;
         else if (Input.GetMouseButtonUp(0))
         {
             endSwipePos = Input.mousePosition;
+            // N4: 명확한 이름
             swipeX = endSwipePos.x - startSwipePos.x;
             corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
 
@@ -82,6 +85,8 @@ public class Player : Figure
             swipeX = 0f;
         }
 #elif UNITY_IOS || UNITY_ANDROID
+        // G5: 중복
+        // 분리된 질의 구문(PlayerInput)으로 대체 가능
         if (Input.touchCount <= 0) return;
         Touch touch = Input.GetTouch(0);
 
@@ -89,9 +94,11 @@ public class Player : Figure
         {
             startSwipePos = touch.position;
         }
+        // G28: 조건식 캡슐화
         else if (touch.phase == TouchPhase.Ended)
         {
             endSwipePos = touch.position;
+            // N4: 명확한 이름
             swipeX = endSwipePos.x - startSwipePos.x;
             corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
 
