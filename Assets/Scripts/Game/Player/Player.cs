@@ -11,8 +11,11 @@ public class Player : Figure
     private Vector2 touchPos = Vector2.zero;
     // 응집도 낮음 - "몇몇 메서드만이 사용하는 인스턴스 변수", 클린코드 177p
     private float screenCenterX = Screen.width * 0.5f;
+    // 불필요한 코드(Redundant Code)
     private Vector2 startSwipePos = Vector2.zero;
+    // 불필요한 코드(Redundant Code)
     private Vector2 endSwipePos = Vector2.zero;
+    // 불필요한 코드(Redundant Code)
     private float diffInputDownAndUp = 0f;
     private float moveTime = 0.1f;
     private Coroutine corMove = null;
@@ -59,30 +62,31 @@ public class Player : Figure
 
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
-    
+    // N4: 명확한 이름
     public void Move()
     {
         if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(_prevInputDownX)));
     }
-    
+    // N4: 명확한 이름
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+    // N4: 명확한 이름
     public void Swipe()
     {
         if (!isTouchable) return;
         diffInputDownAndUp = PlayerInput.GetInputPositionXUp() - _prevInputDownX;
         corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
-
+        // 불필요한 코드(Redundant Code)
         ResetDiffInputDownAndUp();
     }
-
+    // 불필요한 코드(Redundant Code)
     private void ResetDiffInputDownAndUp()
     {
         startSwipePos = Vector2.zero;
         endSwipePos = Vector2.zero;
         diffInputDownAndUp = 0f;
     }
-
+    // 불필요한 코드(Redundant Code)
     private float GetDiffInputDownAndUp()
     {
 #if UNITY_EDITOR
