@@ -67,45 +67,39 @@ public class Player : Figure
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
     public void Swipe()
     {
-        // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
-        if (isTouchable)
-        {
+        if (!isTouchable) return;
 #if UNITY_EDITOR
-            if (Input.GetMouseButtonDown(0))
-                startSwipePos = Input.mousePosition;
-            else if (Input.GetMouseButtonUp(0))
-            {
-                endSwipePos = Input.mousePosition;
-                swipeX = endSwipePos.x - startSwipePos.x;
-                corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
+        if (Input.GetMouseButtonDown(0))
+            startSwipePos = Input.mousePosition;
+        else if (Input.GetMouseButtonUp(0))
+        {
+            endSwipePos = Input.mousePosition;
+            swipeX = endSwipePos.x - startSwipePos.x;
+            corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
 
-                startSwipePos = Vector2.zero;
-                endSwipePos = Vector2.zero;
-                swipeX = 0f;
-            }
-#elif UNITY_IOS || UNITY_ANDROID
-            // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-
-                if (touch.phase == TouchPhase.Began)
-                {
-                    startSwipePos = touch.position;
-                }
-                else if (touch.phase == TouchPhase.Ended)
-                {
-                    endSwipePos = touch.position;
-                    swipeX = endSwipePos.x - startSwipePos.x;
-                    corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
-
-                    startSwipePos = Vector2.zero;
-                    endSwipePos = Vector2.zero;
-                    swipeX = 0f;
-                }
-            }
-#endif
+            startSwipePos = Vector2.zero;
+            endSwipePos = Vector2.zero;
+            swipeX = 0f;
         }
+#elif UNITY_IOS || UNITY_ANDROID
+        if (Input.touchCount <= 0) return;
+        Touch touch = Input.GetTouch(0);
+
+        if (touch.phase == TouchPhase.Began)
+        {
+            startSwipePos = touch.position;
+        }
+        else if (touch.phase == TouchPhase.Ended)
+        {
+            endSwipePos = touch.position;
+            swipeX = endSwipePos.x - startSwipePos.x;
+            corMove = StartCoroutine(MovePlayer((endSwipePos - startSwipePos).normalized.x));
+
+            startSwipePos = Vector2.zero;
+            endSwipePos = Vector2.zero;
+            swipeX = 0f;
+        }
+#endif
     }
 
     private IEnumerator MovePlayer(float directionX)
