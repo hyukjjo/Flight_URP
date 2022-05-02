@@ -148,25 +148,20 @@ public class Player : Figure
 
     private bool CanMoveTo(Vector2 nextPos)
     {
-        // Stub: 디펜던시 해소
-        return true;
-        // 불필요한 지역 변수(redundant code)
-        bool move = true;
-
         enemys = GameManager.Instance.enemyManager.enemys;
         // G28: 조건식 캡슐화
         if (enemys.Count == 0 && enemys.Count == 0)
         {
-            move = false;
+            return false;
         }
         
         // G28: 조건식 캡슐화
         if (enemys.Count > 0 && nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
         {
-            move = false;
+            return false;
         }
 
-        return move;
+        return true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
