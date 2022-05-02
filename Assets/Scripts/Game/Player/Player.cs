@@ -11,12 +11,6 @@ public class Player : Figure
     private Vector2 touchPos = Vector2.zero;
     // 응집도 낮음 - "몇몇 메서드만이 사용하는 인스턴스 변수", 클린코드 177p
     private float screenCenterX = Screen.width * 0.5f;
-    // 불필요한 코드(Redundant Code)
-    private Vector2 startSwipePos = Vector2.zero;
-    // 불필요한 코드(Redundant Code)
-    private Vector2 endSwipePos = Vector2.zero;
-    // 불필요한 코드(Redundant Code)
-    private float diffInputDownAndUp = 0f;
     private float moveTime = 0.1f;
     private Coroutine corMove = null;
     private Vector2 nextPos = Vector2.zero;
@@ -74,33 +68,12 @@ public class Player : Figure
     public void Swipe()
     {
         if (!isTouchable) return;
-        diffInputDownAndUp = PlayerInput.GetInputPositionXUp() - _prevInputDownX;
-        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
-        // 불필요한 코드(Redundant Code)
-        ResetDiffInputDownAndUp();
-    }
-    // 불필요한 코드(Redundant Code)
-    private void ResetDiffInputDownAndUp()
-    {
-        startSwipePos = Vector2.zero;
-        endSwipePos = Vector2.zero;
-        diffInputDownAndUp = 0f;
-    }
-    // 불필요한 코드(Redundant Code)
-    private float GetDiffInputDownAndUp()
-    {
-#if UNITY_EDITOR
-        startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
-        endSwipePos = new Vector2(PlayerInput.GetInputPositionXUp(), 0f);
-        return endSwipePos.x - startSwipePos.x;
-#elif UNITY_IOS || UNITY_ANDROID
-        startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
-        endSwipePos = new Vector2(PlayerInput.GetInputPositionXUp(), 0f);
-        return endSwipePos.x - startSwipePos.x;
-#endif
+        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
     }
 
-    private float CheckSwipeLeftOrRight() => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
+    private float CalcDiffInputDownAndUp() => PlayerInput.GetInputPositionXUp() - _prevInputDownX;
+
+    private float CheckSwipeLeftOrRight(float diffInputDownAndUp) => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
 
     // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
     private IEnumerator MovePlayer(float directionX)
