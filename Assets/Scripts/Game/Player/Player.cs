@@ -70,6 +70,7 @@ public class Player : Figure
         if (!isTouchable) return;
 #if UNITY_EDITOR
         startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
+        // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
         if (Input.GetMouseButtonUp(0))
         {
             endSwipePos = Input.mousePosition;
@@ -82,6 +83,7 @@ public class Player : Figure
         }
 #elif UNITY_IOS || UNITY_ANDROID
         startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
+        // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
         if (IsTouchUp(touch))
         {
             endSwipePos = touch.position;
