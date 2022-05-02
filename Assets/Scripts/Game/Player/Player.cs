@@ -24,6 +24,7 @@ public class Player : Figure
     private float oddX = 0f;
     private float evenX = -0.75f;
     private float offset = 1.5f;
+    private float _prevInputDownX;
     public IPlayerInput PlayerInput { get; set; }
     private const float LEFT_SIDE = -1.0f;
     private const float RIGHT_SIDE = 1.0f;
@@ -31,6 +32,7 @@ public class Player : Figure
     {
         if (Input.GetKeyDown(KeyCode.A))
             Init();
+        _prevInputDownX = PlayerInput.GetInputPositionXDown();
         Move();
         //Swipe();
     }
@@ -61,43 +63,41 @@ public class Player : Figure
     public void Move()
     {
         if (!isTouchable) return;
-        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(PlayerInput.GetInputPositionXDown())));
+        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(_prevInputDownX)));
     }
     
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
-    // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
     public void Swipe()
     {
         if (!isTouchable) return;
+        diffInputDownAndUp = PlayerInput.GetInputPositionXUp() - _prevInputDownX;
+        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
+
+        ResetDiffInputDownAndUp();
+    }
+
+    private void ResetDiffInputDownAndUp()
+    {
+        startSwipePos = Vector2.zero;
+        endSwipePos = Vector2.zero;
+        diffInputDownAndUp = 0f;
+    }
+
+    private float GetDiffInputDownAndUp()
+    {
 #if UNITY_EDITOR
         startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
-        if (!Input.GetMouseButtonUp(0)) return;
-        endSwipePos = Input.mousePosition;
-        diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
-        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
-
-        startSwipePos = Vector2.zero;
-        endSwipePos = Vector2.zero;
-        diffInputDownAndUp = 0f;
+        endSwipePos = new Vector2(PlayerInput.GetInputPositionXUp(), 0f);
+        return endSwipePos.x - startSwipePos.x;
 #elif UNITY_IOS || UNITY_ANDROID
         startSwipePos = new Vector2(PlayerInput.GetInputPositionXDown(), 0f);
-        if (!IsTouchUp(touch)) return;
-        endSwipePos = touch.position;
-        diffInputDownAndUp = endSwipePos.x - startSwipePos.x;
-        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight()));
-
-        startSwipePos = Vector2.zero;
-        endSwipePos = Vector2.zero;
-        diffInputDownAndUp = 0f;
+        endSwipePos = new Vector2(PlayerInput.GetInputPositionXUp(), 0f);
+        return endSwipePos.x - startSwipePos.x;
 #endif
     }
 
     private float CheckSwipeLeftOrRight() => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
 
-    private bool IsTouchUp(Touch touch)
-    {
-        return touch.phase == TouchPhase.Ended;
-    }
     // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
     private IEnumerator MovePlayer(float directionX)
     {

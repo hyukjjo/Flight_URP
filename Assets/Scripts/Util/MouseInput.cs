@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class MouseInput: IPlayerInput
 {
-    public float GetInputPositionXDown()
-    {
-        if (Input.GetMouseButtonDown(0)) return 0.0f;
-        return Input.mousePosition.x;
-    }
+    public float GetInputPositionXDown() => Input.GetMouseButtonDown(0) ? 0.0f : Input.mousePosition.x;
+
+    public float GetInputPositionXUp() => !Input.GetMouseButtonUp(0) ? 0f : Input.mousePosition.x;
 }
