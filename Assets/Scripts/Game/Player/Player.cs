@@ -150,14 +150,17 @@ public class Player : Figure
     {
         // Stub: 디펜던시 해소
         return true;
+        // 불필요한 지역 변수(redundant code)
         bool move = true;
 
         enemys = GameManager.Instance.enemyManager.enemys;
+        // G28: 조건식 캡슐화
         if (enemys.Count == 0 && enemys.Count == 0)
         {
             move = false;
         }
         
+        // G28: 조건식 캡슐화
         if (enemys.Count > 0 && nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
         {
             move = false;
