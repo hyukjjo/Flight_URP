@@ -30,9 +30,10 @@ public class Player : Figure
     {
         if (Input.GetKeyDown(KeyCode.A))
             Init();
+        if (!isTouchable) return;
         _prevInputDownX = PlayerInput.GetInputPositionXDown();
         MoveByTouch();
-        //Swipe();
+        MoveBySwipe();
     }
 
     public override void Init()
@@ -60,8 +61,6 @@ public class Player : Figure
 
     public void MoveByTouch()
     {
-        // G5: 중복
-        if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckTouchLeftOrRight(_prevInputDownX)));
     }
 
@@ -69,8 +68,6 @@ public class Player : Figure
 
     public void MoveBySwipe()
     {
-        // G5: 중복
-        if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
     }
 
