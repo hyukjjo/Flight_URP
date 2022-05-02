@@ -80,9 +80,12 @@ public class Player : Figure
     {
         if (HasBeingMoved())
         {
+            // 불필요한 코드(Redundant Code)
             transform.position = nextPos;
+            // 불필요한 코드(Redundant Code)
             nextPos = Vector2.zero;
             StopAllCoroutines();
+            // 불필요한 코드(Redundant Code)
             corMove = null;
             corMove = StartCoroutine(MovePlayer(directionX));
             yield break;
