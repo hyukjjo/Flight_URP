@@ -58,6 +58,12 @@ public class Player : Figure
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
     
+    // 11.1 질의(Query) 함수와 변경(Modifier) 함수 분리하기
+    // 변경 함수 내에서 질의 함수는 부수 효과가 아니다.
+    // 따라서 함수명으로 명시할 의무가 없다.
+    // cf. 이미 질의 함수는 IPlayerInput에 분리되었다.
+    // 의미 있는 이름 - 불필요한 맥락 37p
+    // Move라는 의도에는 Input을 참조할 것임이 명확하므로 불필요하다.
     public void GetInputPositionXDownAndMovePlayer()
     {
         if (!isTouchable) return;
@@ -67,6 +73,7 @@ public class Player : Figure
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
     public void Swipe()
     {
+        // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
         if (isTouchable)
         {
 #if UNITY_EDITOR
@@ -83,6 +90,7 @@ public class Player : Figure
                 swipeX = 0f;
             }
 #elif UNITY_IOS || UNITY_ANDROID
+            // 10.3 조건부 로직 간소화 - 중첩 조건문을 보호 구문으로 바꾸기
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -156,6 +164,7 @@ public class Player : Figure
         return true;
         bool move = true;
 
+        // 10.2 조건부 로직 간소화 - 조건식 통합하기
         if (enemys.Count == 0)
         {
             enemys = GameManager.Instance.enemyManager.enemys;
@@ -164,6 +173,7 @@ public class Player : Figure
                 move = false;
         }
 
+        // 10.2 조건부 로직 간소화 - 조건식 통합하기
         if (enemys.Count > 0)
         {
             if (nextPos.x < enemys[0].transform.position.x || nextPos.x > enemys[enemys.Count - 1].transform.position.x)
