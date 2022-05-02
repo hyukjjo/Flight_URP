@@ -30,7 +30,7 @@ public class Player : Figure
         if (Input.GetKeyDown(KeyCode.A))
             Init();
         _prevInputDownX = PlayerInput.GetInputPositionXDown();
-        Move();
+        MoveByTouch();
         //Swipe();
     }
 
@@ -56,16 +56,16 @@ public class Player : Figure
 
         model.sprite = GameManager.Instance.models[(int)figure.shape];
     }
-    // N4: 명확한 이름
-    public void Move()
+
+    public void MoveByTouch()
     {
         if (!isTouchable) return;
-        corMove = StartCoroutine(MovePlayer(CheckLeftOrRight(_prevInputDownX)));
+        corMove = StartCoroutine(MovePlayer(CheckTouchLeftOrRight(_prevInputDownX)));
     }
-    // N4: 명확한 이름
-    private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
-    // N4: 명확한 이름
-    public void Swipe()
+
+    private float CheckTouchLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+
+    public void MoveBySwipe()
     {
         if (!isTouchable) return;
         corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
