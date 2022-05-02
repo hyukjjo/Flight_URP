@@ -150,10 +150,7 @@ public class Player : Figure
     {
         enemys = GameManager.Instance.enemyManager.enemys;
         if (IsEnemyEmpty()) return false;
-        // 축약 가능
-        if (IsOutsideOfValidArea(nextPos)) return false;
-
-        return true;
+        return !IsOutsideOfValidArea(nextPos);
     }
     private bool IsOutsideOfValidArea(Vector2 nextPos)
     {
