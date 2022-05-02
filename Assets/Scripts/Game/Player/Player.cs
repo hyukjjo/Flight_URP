@@ -65,6 +65,7 @@ public class Player : Figure
     }
     
     private float CheckLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
+    // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
     public void Swipe()
     {
         if (!isTouchable) return;
@@ -97,7 +98,7 @@ public class Player : Figure
     {
         return touch.phase == TouchPhase.Ended;
     }
-
+    // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
     private IEnumerator MovePlayer(float directionX)
     {
         if (corMove != null)
