@@ -9,21 +9,22 @@ public class Player : Figure
     private float oddX = 0f;
     private float evenX = -0.75f;
     private PlayerMoveCtrl _playerMoveCtrl;
+    private IPlayerInput _playerInput;
 
-    public IPlayerInput PlayerInput { get; set; }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
             Init();
         if (!isTouchable) return;
-        _playerMoveCtrl.ApplyInput(PlayerInput);
+        _playerMoveCtrl.ApplyInput();
     }
 
     public override void Init()
     {
         base.Init();
-        _playerMoveCtrl = new PlayerMoveCtrl(this);
+        _playerInput = InputFactory.GetPlayerInput();
+        _playerMoveCtrl = new PlayerMoveCtrl(this, _playerInput);
         SetPosition();
         figure = FigureData.GetRandomData(GameManager.Instance.EnemyCount);
         SetFigure(figure);

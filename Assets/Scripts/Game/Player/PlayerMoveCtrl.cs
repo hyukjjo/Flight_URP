@@ -14,15 +14,17 @@ public class PlayerMoveCtrl
     private List<GameObject> enemys = new List<GameObject>();
     private float offset = 1.5f;
     private float _prevInputDownX;
+    private IPlayerInput _playerInput;
 
-    public PlayerMoveCtrl(Player player)
+    public PlayerMoveCtrl(Player player, IPlayerInput playerInput)
     {
         _player = player;
+        _playerInput = playerInput;
     }
 
-    public void ApplyInput(IPlayerInput playerInput)
+    public void ApplyInput()
     {
-        _prevInputDownX = playerInput.GetInputPositionXDown();
+        _prevInputDownX = _playerInput.GetInputPositionXDown();
         MoveByTouch();
         MoveBySwipe();
     }
@@ -39,7 +41,7 @@ public class PlayerMoveCtrl
         corMove = _player.StartCoroutine(TryMovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
     }
 
-    private float CalcDiffInputDownAndUp() => _player.PlayerInput.GetInputPositionXUp() - _prevInputDownX;
+    private float CalcDiffInputDownAndUp() => _playerInput.GetInputPositionXUp() - _prevInputDownX;
     private float CheckSwipeLeftOrRight(float diffInputDownAndUp) => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
 
     private IEnumerator TryMovePlayer(float directionX)
