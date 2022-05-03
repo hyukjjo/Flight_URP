@@ -61,14 +61,14 @@ public class Player : Figure
 
     public void MoveByTouch()
     {
-        corMove = StartCoroutine(MovePlayer(CheckTouchLeftOrRight(_prevInputDownX)));
+        corMove = StartCoroutine(TryMovePlayer(CheckTouchLeftOrRight(_prevInputDownX)));
     }
 
     private float CheckTouchLeftOrRight(float inputPositionX) => inputPositionX - screenCenterX >= 0.0 ? RIGHT_SIDE : LEFT_SIDE;
 
     public void MoveBySwipe()
     {
-        corMove = StartCoroutine(MovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
+        corMove = StartCoroutine(TryMovePlayer(CheckSwipeLeftOrRight(CalcDiffInputDownAndUp())));
     }
 
     private float CalcDiffInputDownAndUp() => PlayerInput.GetInputPositionXUp() - _prevInputDownX;
@@ -76,23 +76,16 @@ public class Player : Figure
     private float CheckSwipeLeftOrRight(float diffInputDownAndUp) => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
 
     // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
-    private IEnumerator MovePlayer(float directionX)
+    private IEnumerator TryMovePlayer(float directionX)
     {
-        if (HasBeingMoved())
-        {
-            StopAllCoroutines();
-            corMove = StartCoroutine(MovePlayer(directionX));
-            yield break;
-        }
+        if (NeedRetryMovePlayer(directionX)) yield break;
 
         //if (isMoving)
         //    yield break;
 
-        float timer = 0f;
 
         Vector2 startPos = transform.position;
-        Vector2 endPos = startPos + new Vector2(directionX * offset, 0f);
-        nextPos = endPos;
+        nextPos = startPos + new Vector2(directionX * offset, 0f);
 
         if (!CanMoveTo(nextPos))
         {
@@ -100,24 +93,32 @@ public class Player : Figure
             nextPos = Vector2.zero;
             yield break;
         }
-
-        yield return null;
         
+        yield return StartCoroutine(ProceedMove(startPos));
+    }
+
+    private IEnumerator ProceedMove(Vector2 startPos)
+    {
+        float timer = 0f;
         while (CheckTimer(timer))
         {
             timer += Time.deltaTime;
-            float flowtime = timer / moveTime;
-
-            transform.position = Vector2.Lerp(startPos, endPos, flowtime);
+            float elapsedTimeRate = timer / moveTime;
+            transform.position = Vector2.Lerp(startPos, nextPos, elapsedTimeRate);
             yield return null;
         }
-        transform.position = endPos;
-
-        corMove = null;
-        nextPos = Vector2.zero;
+        transform.position = nextPos;
     }
 
-    private bool HasBeingMoved() => corMove != null;
+    private bool NeedRetryMovePlayer(float directionX)
+    {
+        if (!IsBeingMoved()) return false;
+        StopAllCoroutines();
+        corMove = StartCoroutine(TryMovePlayer(directionX));
+        return true;
+    }
+
+    private bool IsBeingMoved() => corMove != null;
 
     private bool CheckTimer(float timer) => timer < moveTime;
 
