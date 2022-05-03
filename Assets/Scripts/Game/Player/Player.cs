@@ -74,15 +74,10 @@ public class Player : Figure
     private float CalcDiffInputDownAndUp() => PlayerInput.GetInputPositionXUp() - _prevInputDownX;
 
     private float CheckSwipeLeftOrRight(float diffInputDownAndUp) => diffInputDownAndUp > 0.0f ? RIGHT_SIDE : LEFT_SIDE;
-
-    // G34: 함수는 추상화 수준을 한 단계만 내려가야 한다.
+    
     private IEnumerator TryMovePlayer(float directionX)
     {
         if (NeedRetryMovePlayer(directionX)) yield break;
-
-        //if (isMoving)
-        //    yield break;
-
 
         Vector2 startPos = transform.position;
         nextPos = startPos + new Vector2(directionX * offset, 0f);
