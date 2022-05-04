@@ -51,7 +51,7 @@ public class PlayerMoveCtrl
         Vector2 startPos = _player.transform.position;
         nextPos = startPos + new Vector2(directionX * offset, 0f);
 
-        if (!CanMoveTo(nextPos))
+        if (!CanMoveToNextPos())
         {
             corMove = null;
             nextPos = Vector2.zero;
@@ -86,15 +86,15 @@ public class PlayerMoveCtrl
     private bool IsBeingMoved() => corMove != null;
     private bool CheckTimer(float timer) => timer < moveTime;
 
-    private bool CanMoveTo(Vector2 nextPos)
+    private bool CanMoveToNextPos()
     {
         enemys = GameManager.Instance.enemyManager.enemys;
         if (IsEnemyEmpty()) return false;
-        return !IsOutsideOfValidArea(nextPos);
+        return !IsOutsideOfValidArea();
     }
 
-    private bool IsOutsideOfValidArea(Vector2 nextPos) => IsGoThroughLeftFence(nextPos) || IsGoThroughRightFence(nextPos);
-    private bool IsGoThroughRightFence(Vector2 nextPos) => nextPos.x > enemys[enemys.Count - 1].transform.position.x;
-    private bool IsGoThroughLeftFence(Vector2 nextPos) => enemys[0].transform.position.x > nextPos.x;
+    private bool IsOutsideOfValidArea() => IsGoThroughLeftFence() || IsGoThroughRightFence();
+    private bool IsGoThroughRightFence() => nextPos.x > enemys[enemys.Count - 1].transform.position.x;
+    private bool IsGoThroughLeftFence() => enemys[0].transform.position.x > nextPos.x;
     private bool IsEnemyEmpty() => enemys.Count <= 0;
 }
